@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
+import 'package:travelapp/apps/router/router_name.dart';
 
 class HomeProfile extends StatelessWidget {
   const HomeProfile({super.key});
@@ -8,7 +10,7 @@ class HomeProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[250],
       body: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -74,7 +76,9 @@ class HomeProfile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    context.goNamed(RouterName.welcome);
+                  },
                   child: Container(
                     width: double.infinity,
                     height: 60,

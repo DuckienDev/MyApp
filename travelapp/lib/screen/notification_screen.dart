@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:travelapp/home_main.dart';
 import 'package:travelapp/screen/setting_screen.dart';
-import 'package:travelapp/widget/Notification_widget/noitification_widget.dart';
+import 'package:travelapp/widget/NotificationWidget/noitification_widget.dart';
 
 class NotificationScreenn extends StatelessWidget {
   const NotificationScreenn({super.key});

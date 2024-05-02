@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:travelapp/widget/Home_widget/home_appbar_seach.dart';
-import 'package:travelapp/widget/Home_widget/home_cities_list.dart';
-import 'package:travelapp/widget/Home_widget/home_favorite_cities.dart';
-import 'package:travelapp/widget/Home_widget/home_information_bar.dart';
-import 'package:travelapp/widget/Home_widget/home_navbar.dart';
+import 'package:travelapp/widget/HomeWidget/home_appbar_seach.dart';
+import 'package:travelapp/widget/HomeWidget/home_cities_list.dart';
+import 'package:travelapp/widget/HomeWidget/home_favorite_cities.dart';
+import 'package:travelapp/widget/HomeWidget/home_information_bar.dart';
+import 'package:travelapp/widget/HomeWidget/home_navbar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

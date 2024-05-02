@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:travelapp/widget/AirPlanceWidget/app_bar_air.dart';
 import 'package:travelapp/widget/AirPlanceWidget/choose_air.dart';
 import 'package:travelapp/widget/AirPlanceWidget/select_trip_air.dart';
-import 'package:travelapp/widget/Home_widget/home_cities_list.dart';
+import 'package:travelapp/widget/HomeWidget/home_cities_list.dart';
 
 class AirPlanceScreen extends StatelessWidget {
   const AirPlanceScreen({super.key});
@@ -50,6 +50,7 @@ class AirPlanceScreen extends StatelessWidget {
                 'Where do you want to go today?',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
               ),
+              SizedBox(height: 20),
               Container(
                 child: InkWell(
                   onTap: () {},

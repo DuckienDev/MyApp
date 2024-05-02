@@ -3,25 +3,25 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:travelapp/home_main.dart';
-import 'package:travelapp/widget/Home_widget/home_appbar_seach.dart';
-import 'package:travelapp/widget/HotelWidget/app_bar_hotel.dart';
+import 'package:travelapp/widget/HomeWidget/home_appbar_seach.dart';
+import 'package:travelapp/RestaurantsWidget/app_bar_restaurant.dart';
 
-class HotelScreem extends StatefulWidget {
-  const HotelScreem({super.key});
+class HotelScreen extends StatefulWidget {
+  const HotelScreen({super.key});
 
   @override
-  State<HotelScreem> createState() => _HotelScreemState();
+  State<HotelScreen> createState() => _HotelScreen();
 }
 
-var NameHotel = [
-  'Dolpin Hotel',
-  'Alex Hotel',
-  'Golden ACE Hotel',
-  'Holiday Inn Hotel',
-  'The Gran Hotel',
+var NameRtr = [
+  'Le Bernardin ',
+  'Corton ',
+  'Eleven Madison ',
+  'Del Posto ',
+  'Daniel ',
 ];
 
-class _HotelScreemState extends State<HotelScreem> {
+class _HotelScreen extends State<HotelScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,25 +31,27 @@ class _HotelScreemState extends State<HotelScreem> {
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomePage(),
-                            ),
-                          );
-                        },
-                        icon: Icon(Icons.arrow_back_ios_new)),
-                    HomeBar(),
-                  ],
-                ),
-                AppBarHotel()
-              ]),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomePage(),
+                              ),
+                            );
+                          },
+                          icon: Icon(Icons.arrow_back_ios_new)),
+                      HomeBar(),
+                    ],
+                  ),
+                  AppBarRestaurant(),
+                ],
+              ),
             ),
           ),
         ),
@@ -78,8 +80,7 @@ class _HotelScreemState extends State<HotelScreem> {
                           bottomLeft: Radius.circular(15)),
                       image: DecorationImage(
                         image: AssetImage(
-                          'images/Hotel/hotel${index + 1}.png',
-                        ),
+                            'images/Restaurants/restaurants${index + 1}.png'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -107,14 +108,14 @@ class _HotelScreemState extends State<HotelScreem> {
                       SizedBox(height: 5),
                       Center(
                         child: Text(
-                          NameHotel[index++],
+                          NameRtr[index++],
                           style: TextStyle(
                               fontSize: 17, fontWeight: FontWeight.w600),
                         ),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        'Price : 300 USD',
+                        'Price : 150 USD',
                         style: TextStyle(fontSize: 12),
                       ),
                     ],

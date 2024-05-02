@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:travelapp/home_main.dart';
-import 'package:travelapp/widget/Home_widget/home_appbar_seach.dart';
+import 'package:go_router/go_router.dart';
+import 'package:travelapp/apps/router/router_name.dart';
+import 'package:travelapp/models/data_location.dart';
+import 'package:travelapp/widget/HomeWidget/home_appbar_seach.dart';
 
+// ignore: must_be_immutable
 class FavorieScreen extends StatefulWidget {
-  const FavorieScreen({super.key});
+  Location item;
+  FavorieScreen({super.key, required this.item});
 
   @override
   State<FavorieScreen> createState() => _FavorieScreenState();
@@ -22,12 +26,7 @@ class _FavorieScreenState extends State<FavorieScreen> {
             children: [
               IconButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(),
-                      ),
-                    );
+                    context.goNamed(RouterName.homepage);
                   },
                   icon: Icon(Icons.arrow_back_ios_new)),
               HomeBar(),
@@ -40,7 +39,7 @@ class _FavorieScreenState extends State<FavorieScreen> {
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.all(15),
             child: Container(
               width: double.infinity,
               height: 300,

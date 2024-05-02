@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:travelapp/models/data_location.dart';
 
-class PostBottomBar extends StatelessWidget {
-  const PostBottomBar({super.key});
+// ignore: must_be_immutable
+class PostBottomBar extends StatefulWidget {
+  Location item;
+  PostBottomBar({super.key, required this.item});
+  @override
+  State<PostBottomBar> createState() => _PostBottomBarState();
+}
 
+class _PostBottomBarState extends State<PostBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height / 2.5,
+      height: MediaQuery.of(context).size.height / 2,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(40),
@@ -23,7 +30,7 @@ class PostBottomBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Japan',
+                      widget.item.name,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -37,24 +44,20 @@ class PostBottomBar extends StatelessWidget {
                         ),
                         SizedBox(width: 3),
                         Text(
-                          '5.0',
+                          widget.item.star,
                           style: TextStyle(fontWeight: FontWeight.w600),
                         )
                       ],
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 15),
                 Text(
-                  "Traveling to Japan - the country of the 'rising sun' Japan "
-                  "always attracts visitors by the harmonious intersection between"
-                  " Oriental culture and the prosperity of modern civilization."
-                  " What's more wonderful than once in a lifetime to see the cherry"
-                  " blossom petals or cross the colorful paths of the red leaf season.",
+                  widget.item.description,
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.w300),
                   textAlign: TextAlign.justify,
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -63,8 +66,8 @@ class PostBottomBar extends StatelessWidget {
                       child: Expanded(
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
-                          child: Image.asset(
-                            'images/Japan/japan3.jpg',
+                          child: Image.network(
+                            widget.item.image[0],
                             fit: BoxFit.cover,
                             width: 110,
                             height: 80,
@@ -77,8 +80,8 @@ class PostBottomBar extends StatelessWidget {
                       child: Expanded(
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
-                          child: Image.asset(
-                            'images/Japan/japan2.jpg',
+                          child: Image.network(
+                            widget.item.image[1],
                             fit: BoxFit.cover,
                             width: 110,
                             height: 80,
@@ -91,7 +94,7 @@ class PostBottomBar extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.black,
                         image: DecorationImage(
-                          image: AssetImage('images/Japan/japan1.jpg'),
+                          image: NetworkImage(widget.item.image[2]),
                           opacity: 0.7,
                           fit: BoxFit.cover,
                         ),
@@ -106,63 +109,45 @@ class PostBottomBar extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 5),
                 Padding(
-                  padding: const EdgeInsets.all(9.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 270,
-                          height: 45,
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black,
-                                  blurRadius: 3,
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.red),
-                          child: Center(
-                            child: Text(
-                              'Book Now',
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ),
+                  padding: EdgeInsets.symmetric(vertical: 30),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: double.infinity,
+                      height: 55,
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black,
+                              blurRadius: 3,
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.red),
+                      child: Center(
+                        child: Text(
+                          'Book Now',
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
                         ),
                       ),
-                      SizedBox(width: 20),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 45,
-                          height: 45,
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color:
-                                      const Color.fromARGB(255, 208, 183, 183),
-                                  blurRadius: 3,
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white),
-                          child: Icon(
-                            Icons.bookmark_outline,
-                            size: 30,
-                            color: Colors.black,
-                          ),
-                        ),
+                    ),
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Comments',
+                        style: TextStyle(fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),
-                ),
+                )
               ],
             ),
           ),

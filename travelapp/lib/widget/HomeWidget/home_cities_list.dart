@@ -1,31 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:travelapp/screen/post_screem.dart';
+import 'package:go_router/go_router.dart';
+import 'package:travelapp/apps/router/router_name.dart';
+import 'package:travelapp/mockup/item_mockup.dart';
 
-class HomeMain extends StatefulWidget {
-  const HomeMain({
-    super.key,
-  });
+class HomeMain extends StatelessWidget {
+  HomeMain({super.key});
 
-  @override
-  State<HomeMain> createState() => _HomeMainState();
-}
-
-class _HomeMainState extends State<HomeMain> {
-  var cities = [
-    'Switzerland',
-    'Italy',
-    'United States',
-    'Singapore',
-    'England',
-    'Japan',
-  ];
-  var start = ['4.5', '4.6', '4.8', '5.0', '4.9', '4.9', '5.0'];
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
-      itemCount: 6,
+      itemCount: dataLocation.length,
       shrinkWrap: true,
       itemBuilder: (BuildContext context, int index) {
         return Padding(
@@ -34,12 +20,8 @@ class _HomeMainState extends State<HomeMain> {
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PostScreen(),
-                    ),
-                  );
+                  context.goNamed(RouterName.postlocation,
+                      extra: dataLocation[index]);
                 },
                 child: Container(
                   height: 200,
@@ -47,7 +29,7 @@ class _HomeMainState extends State<HomeMain> {
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
-                      image: AssetImage("images/cities/city${index + 1}.jpg"),
+                      image: NetworkImage(dataLocation[index].image[1]),
                       fit: BoxFit.cover,
                       opacity: 0.9,
                     ),
@@ -60,7 +42,7 @@ class _HomeMainState extends State<HomeMain> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      cities[index++],
+                      dataLocation[index].name,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -83,7 +65,7 @@ class _HomeMainState extends State<HomeMain> {
                     size: 20,
                   ),
                   Text(
-                    start[index++],
+                    dataLocation[index].star,
                     style: TextStyle(fontWeight: FontWeight.w400),
                   )
                 ],

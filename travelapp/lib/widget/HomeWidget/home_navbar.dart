@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:travelapp/apps/router/router_name.dart';
 import 'package:travelapp/screen/airplance_screen.dart';
-import 'package:travelapp/screen/favorite_screen.dart';
 import 'package:travelapp/screen/frofile_screen.dart';
-import 'package:travelapp/screen/hotel_screen.dart';
 import 'package:travelapp/screen/map_screen.dart';
 import 'package:travelapp/screen/notification_screen.dart';
-import 'package:travelapp/screen/restaurants_screen.dart';
+import 'package:travelapp/screen/hotel_screen.dart';
 import 'package:travelapp/screen/setting_screen.dart';
 
 class HomeNavBar extends StatelessWidget {
@@ -88,8 +88,7 @@ class HomeNavBar extends StatelessWidget {
             leading: Icon(Icons.favorite),
             title: Text('Favorites'),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FavorieScreen()));
+              context.goNamed(RouterName.favorite);
             },
           ),
           ListTile(
@@ -113,22 +112,11 @@ class HomeNavBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.restaurant),
-            title: Text('Restaurants'),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => RestaurantsScreen()));
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.hotel_class_outlined),
             title: Text('Hotels'),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HotelScreem(),
-                  ));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HotelScreen()));
             },
           ),
           Divider(),

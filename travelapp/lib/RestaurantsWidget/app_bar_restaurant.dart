@@ -136,7 +136,7 @@ class AppBarRestaurant extends StatelessWidget {
                       children: [
                         Icon(Icons.calendar_month),
                         SizedBox(width: 10),
-                        Text('Check-in date'),
+                        Text('Check in date'),
                       ],
                     ),
                   ),
@@ -150,7 +150,7 @@ class AppBarRestaurant extends StatelessWidget {
                       children: [
                         Icon(Icons.watch_later_outlined),
                         SizedBox(width: 10),
-                        Text('Time'),
+                        Text('Out in date'),
                       ],
                     ),
                   ),

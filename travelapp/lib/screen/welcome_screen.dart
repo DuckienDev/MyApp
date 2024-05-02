@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:travelapp/home_main.dart';
+import 'package:go_router/go_router.dart';
+import 'package:travelapp/apps/router/router_name.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -46,12 +47,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomePage(),
-                      ),
-                    );
+                    context.goNamed(RouterName.homepage);
                   },
                   child: Column(
                     children: [

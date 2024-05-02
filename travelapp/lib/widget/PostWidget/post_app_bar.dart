@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
+import 'package:like_button/like_button.dart';
+import 'package:travelapp/apps/router/router_name.dart';
 
 class PostAppBar extends StatelessWidget {
   const PostAppBar({super.key});
@@ -14,7 +17,7 @@ class PostAppBar extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Navigator.pop(context);
+                context.goNamed(RouterName.homepage);
               },
               child: Container(
                 width: 45,
@@ -45,11 +48,7 @@ class PostAppBar extends StatelessWidget {
                     ],
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white),
-                child: Icon(
-                  Icons.favorite_outline,
-                  size: 20,
-                  color: Colors.red,
-                ),
+                child: LikeButton(),
               ),
             ),
           ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:travelapp/screen/welcome_screen.dart';
+import 'package:travelapp/apps/router/router.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,10 +22,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: RouterCustom.router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: Color(0xFFEDF2F6)),
-      home: WelcomeScreen(),
     );
   }
 }

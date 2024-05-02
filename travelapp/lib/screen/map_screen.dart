@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:travelapp/home_main.dart';
-import 'package:travelapp/widget/Home_widget/home_appbar_seach.dart';
+import 'package:travelapp/widget/HomeWidget/home_appbar_seach.dart';
 
 class MapScreenn extends StatelessWidget {
   const MapScreenn({super.key});

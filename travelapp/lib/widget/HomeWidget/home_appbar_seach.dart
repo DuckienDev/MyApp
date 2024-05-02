@@ -50,7 +50,6 @@ class CustomSeach extends SearchDelegate {
     'England',
     'Japan',
   ];
-
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [

@@ -1,18 +1,24 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:travelapp/mockup/item_mockup.dart';
+import 'package:travelapp/models/data_location.dart';
 
+// ignore: must_be_immutable
 class ImageCity extends StatefulWidget {
+  Location item;
+  ImageCity({super.key, required this.item});
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState(item: item);
 }
 
 class _MyHomePageState extends State<ImageCity> {
+  Location item;
+
+  static int index = dataLocation[index].image.length;
+  _MyHomePageState({required this.item});
   int _currentIndex = 0;
-  List<String> _images = [
-    'images/Japan/japan1.jpg',
-    'images/Japan/japan2.jpg',
-    'images/Japan/japan3.jpg'
-  ];
+  List<String> images = dataLocation[index].image;
   late Timer _timer;
 
   @override
@@ -20,7 +26,7 @@ class _MyHomePageState extends State<ImageCity> {
     super.initState();
     _timer = Timer.periodic(Duration(seconds: 3), (timer) {
       setState(() {
-        _currentIndex = (_currentIndex + 1) % _images.length;
+        _currentIndex = (_currentIndex + 1) % images.length;
       });
     });
   }
@@ -38,8 +44,8 @@ class _MyHomePageState extends State<ImageCity> {
       child: Container(
         width: double.infinity,
         height: double.infinity,
-        child: Image.asset(
-          _images[_currentIndex],
+        child: Image.network(
+          images[_currentIndex],
           fit: BoxFit.cover,
           height: 100,
         ),

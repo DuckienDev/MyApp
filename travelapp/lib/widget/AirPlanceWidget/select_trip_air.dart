@@ -91,7 +91,7 @@ class SelectTripAir extends StatelessWidget {
                     children: [
                       Icon(Icons.calendar_month),
                       SizedBox(width: 10),
-                      Text('  Com Back'),
+                      Text('  Come Back'),
                     ],
                   ),
                 ),
