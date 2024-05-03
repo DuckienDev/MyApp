@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travelapp/apps/router/router_name.dart';
-import 'package:travelapp/mockup/item_mockup.dart';
+import 'package:travelapp/mockup/location_mockup.dart';
 
 class HomeMain extends StatelessWidget {
   HomeMain({super.key});
@@ -24,15 +24,23 @@ class HomeMain extends StatelessWidget {
                       extra: dataLocation[index]);
                 },
                 child: Container(
+                  clipBehavior: Clip.hardEdge,
                   height: 200,
                   decoration: BoxDecoration(
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(15),
-                    image: DecorationImage(
-                      image: NetworkImage(dataLocation[index].image[1]),
-                      fit: BoxFit.cover,
-                      opacity: 0.9,
-                    ),
+
+                    // image: DecorationImage(
+                    //   image:
+                    //   NetworkImage(dataLocation[index].image[1]),
+                    //   fit: BoxFit.cover,
+                    //   opacity: 0.9,
+                    // ),
+                  ),
+                  child: Image.network(
+                    width: double.infinity,
+                    dataLocation[index].image[1],
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),

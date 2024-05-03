@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:travelapp/home_main.dart';
 import 'package:travelapp/widget/HomeWidget/home_appbar_seach.dart';
-import 'package:travelapp/widget/HomeWidget/HotelWidget/app_bar_restaurant.dart';
+import 'package:travelapp/widget/HotelWidget/app_bar_restaurant.dart';
 
 class HotelScreen extends StatefulWidget {
   const HotelScreen({super.key});

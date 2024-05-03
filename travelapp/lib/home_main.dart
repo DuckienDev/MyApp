@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:travelapp/mockup/item_mockup.dart';
+import 'package:travelapp/mockup/location_mockup.dart';
 import 'package:travelapp/screen/favorite_screen.dart';
 import 'package:travelapp/screen/home_screen.dart';
 import 'package:travelapp/screen/frofile_screen.dart';

@@ -18,7 +18,6 @@ class _PostBottomBarState extends State<PostBottomBar> {
       height: MediaQuery.of(context).size.height / 2,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(40),
       ),
       child: ListView(
         children: [
