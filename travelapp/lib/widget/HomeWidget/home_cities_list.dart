@@ -29,13 +29,6 @@ class HomeMain extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(15),
-
-                    // image: DecorationImage(
-                    //   image:
-                    //   NetworkImage(dataLocation[index].image[1]),
-                    //   fit: BoxFit.cover,
-                    //   opacity: 0.9,
-                    // ),
                   ),
                   child: Image.network(
                     width: double.infinity,

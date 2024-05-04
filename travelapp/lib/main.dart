@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:travelapp/apps/router/router.dart';
+import 'package:travelapp/provider/like_provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,10 +24,13 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: RouterCustom.router,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(scaffoldBackgroundColor: Color(0xFFEDF2F6)),
+    return ChangeNotifierProvider(
+      create: (context) => LikeProviderLct(),
+      child: MaterialApp.router(
+        routerConfig: RouterCustom.router,
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(scaffoldBackgroundColor: Color(0xFFEDF2F6)),
+      ),
     );
   }
 }

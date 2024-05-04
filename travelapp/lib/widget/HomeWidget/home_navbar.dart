@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:travelapp/apps/router/router_name.dart';
+import 'package:travelapp/mockup/location_mockup.dart';
 import 'package:travelapp/screen/airplance_screen.dart';
+import 'package:travelapp/screen/favorite_screen.dart';
 import 'package:travelapp/screen/frofile_screen.dart';
 import 'package:travelapp/screen/map_screen.dart';
 import 'package:travelapp/screen/notification_screen.dart';
@@ -9,7 +9,9 @@ import 'package:travelapp/screen/hotel_screen.dart';
 import 'package:travelapp/screen/setting_screen.dart';
 
 class HomeNavBar extends StatelessWidget {
-  const HomeNavBar({super.key});
+  HomeNavBar({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +90,11 @@ class HomeNavBar extends StatelessWidget {
             leading: Icon(Icons.favorite),
             title: Text('Favorites'),
             onTap: () {
-              context.goNamed(RouterName.favorite);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          FavorieScreen(item: dataLocation.first)));
             },
           ),
           ListTile(
