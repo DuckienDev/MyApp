@@ -1,23 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp/mockup/location_mockup.dart';
 
-class HomeFavoriteCities extends StatefulWidget {
+class HomeFavoriteCities extends StatelessWidget {
   const HomeFavoriteCities({
     super.key,
   });
-
-  @override
-  State<HomeFavoriteCities> createState() => _HomeFavoriteCitiesState();
-}
-
-class _HomeFavoriteCitiesState extends State<HomeFavoriteCities> {
-  var nameCities = [
-    'Switzerland',
-    'Italy',
-    'United States',
-    'Singapore',
-    'England',
-    'Japan',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +14,7 @@ class _HomeFavoriteCitiesState extends State<HomeFavoriteCities> {
           child: Container(
             height: 200,
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: dataLocation.length,
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
@@ -37,12 +24,11 @@ class _HomeFavoriteCitiesState extends State<HomeFavoriteCities> {
                     width: 160,
                     padding: EdgeInsets.all(20),
                     margin: EdgeInsets.only(left: 15),
-                    // color: Colors.black,
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
-                        image: AssetImage("images/cities/city${index + 1}.jpg"),
+                        image: NetworkImage(dataLocation[index].image[0]),
                         fit: BoxFit.cover,
                         opacity: 0.8,
                       ),
@@ -65,7 +51,7 @@ class _HomeFavoriteCitiesState extends State<HomeFavoriteCities> {
                         Container(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            nameCities[index++],
+                            dataLocation[index].name,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:travelapp/home_main.dart';
+import 'package:travelapp/mockup/hotel_mockup.dart';
 import 'package:travelapp/widget/HomeWidget/home_appbar_seach.dart';
 import 'package:travelapp/widget/HotelWidget/app_bar_restaurant.dart';
 
@@ -12,14 +13,6 @@ class HotelScreen extends StatefulWidget {
   @override
   State<HotelScreen> createState() => _HotelScreen();
 }
-
-var NameRtr = [
-  'Le Bernardin ',
-  'Corton ',
-  'Eleven Madison ',
-  'Del Posto ',
-  'Daniel ',
-];
 
 class _HotelScreen extends State<HotelScreen> {
   @override
@@ -57,7 +50,7 @@ class _HotelScreen extends State<HotelScreen> {
         ),
       ),
       body: ListView.builder(
-        itemCount: 5,
+        itemCount: dataHotel.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(10.0),
@@ -79,8 +72,7 @@ class _HotelScreen extends State<HotelScreen> {
                           topLeft: Radius.circular(15),
                           bottomLeft: Radius.circular(15)),
                       image: DecorationImage(
-                        image: AssetImage(
-                            'images/Restaurants/restaurants${index + 1}.png'),
+                        image: NetworkImage(dataHotel[index].image[0]),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -92,7 +84,7 @@ class _HotelScreen extends State<HotelScreen> {
                       Row(
                         children: [
                           Text(
-                            '4.8',
+                            dataHotel[index].star,
                             style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.w600),
                           ),
@@ -106,16 +98,22 @@ class _HotelScreen extends State<HotelScreen> {
                         ],
                       ),
                       SizedBox(height: 5),
-                      Center(
-                        child: Text(
-                          NameRtr[index++],
-                          style: TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.w600),
+                      Container(
+                        width: 150,
+                        child: Center(
+                          child: Text(
+                            dataHotel[index].name,
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        'Price : 150 USD',
+                        dataHotel[index].price,
                         style: TextStyle(fontSize: 12),
                       ),
                     ],

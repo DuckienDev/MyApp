@@ -4,11 +4,12 @@ class Hotel {
   String name;
   String star;
   String description;
-  Hotel({
-    required this.id,
-    required this.image,
-    required this.name,
-    required this.star,
-    required this.description,
-  });
+  String price;
+  Hotel(
+      {required this.id,
+      required this.image,
+      required this.name,
+      required this.star,
+      required this.description,
+      required this.price});
 }

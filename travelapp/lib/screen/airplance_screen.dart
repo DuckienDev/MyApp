@@ -46,6 +46,33 @@ class AirPlanceScreen extends StatelessWidget {
               SizedBox(height: 10),
               SelectTripAir(),
               SizedBox(height: 20),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Container(
+                    width: double.infinity,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(blurRadius: 2, color: Colors.black)
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Book Now',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
               Text(
                 'Where do you want to go today?',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),

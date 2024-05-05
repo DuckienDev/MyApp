@@ -12,4 +12,5 @@ class RouterName {
   static const String map = 'map';
   static const String notification = 'notification';
   static const String setting = 'setting';
+  static const String likepost = 'likepost';
 }

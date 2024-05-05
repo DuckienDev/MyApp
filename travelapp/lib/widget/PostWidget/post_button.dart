@@ -14,6 +14,7 @@ class _PostBottomBarState extends State<PostBottomBar> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      shrinkWrap: true,
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15),

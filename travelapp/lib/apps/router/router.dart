@@ -42,6 +42,16 @@ class RouterCustom {
           Location item = state.extra as Location;
           return FavorieScreen(item: item);
         },
+        routes: <RouteBase>[
+          GoRoute(
+            path: 'likepost',
+            name: RouterName.likepost,
+            builder: (BuildContext context, GoRouterState state) {
+              Location item = state.extra as Location;
+              return PostScreen(item: item);
+            },
+          ),
+        ],
       ),
     ],
   );

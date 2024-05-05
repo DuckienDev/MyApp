@@ -9,7 +9,6 @@ class LikeProviderLct extends ChangeNotifier {
     } else {
       listLikeLct.add(id);
     }
-    print(listLikeLct);
     notifyListeners();
   }
 }

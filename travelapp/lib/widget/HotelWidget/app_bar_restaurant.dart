@@ -148,7 +148,7 @@ class AppBarRestaurant extends StatelessWidget {
                     onTap: () {},
                     child: Row(
                       children: [
-                        Icon(Icons.watch_later_outlined),
+                        Icon(Icons.calendar_month),
                         SizedBox(width: 10),
                         Text('Out in date'),
                       ],
