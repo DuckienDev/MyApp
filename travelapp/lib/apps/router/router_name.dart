@@ -1,5 +1,5 @@
 class RouterName {
-  static const String welcome = 'welcom';
+  static const String login = 'login';
   static const String homepage = 'homepage';
   static const String profile = 'profile';
   static const String restaurant = 'restaurant';

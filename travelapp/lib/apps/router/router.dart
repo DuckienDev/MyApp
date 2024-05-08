@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travelapp/apps/router/router_name.dart';
 import 'package:travelapp/home_main.dart';
+import 'package:travelapp/auth/main_page.dart';
 import 'package:travelapp/models/data_location.dart';
 import 'package:travelapp/screen/favorite_screen.dart';
 import 'package:travelapp/screen/post_location_screen.dart';
-import 'package:travelapp/screen/welcome_screen.dart';
 
 class RouterCustom {
   static final GoRouter router = GoRouter(
@@ -13,9 +13,9 @@ class RouterCustom {
     routes: <RouteBase>[
       GoRoute(
         path: '/',
-        name: RouterName.welcome,
+        name: RouterName.login,
         builder: (BuildContext context, GoRouterState state) {
-          return const WelcomeScreen();
+          return MainPage();
         },
       ),
       GoRoute(

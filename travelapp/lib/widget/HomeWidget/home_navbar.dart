@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:travelapp/mockup/location_mockup.dart';
 import 'package:travelapp/screen/airplance_screen.dart';
@@ -8,10 +9,17 @@ import 'package:travelapp/screen/notification_screen.dart';
 import 'package:travelapp/screen/hotel_screen.dart';
 import 'package:travelapp/screen/setting_screen.dart';
 
-class HomeNavBar extends StatelessWidget {
+class HomeNavBar extends StatefulWidget {
   HomeNavBar({
     super.key,
   });
+
+  @override
+  State<HomeNavBar> createState() => _HomeNavBarState();
+}
+
+class _HomeNavBarState extends State<HomeNavBar> {
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class HomeNavBar extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             accountEmail: Text(
-              'nguyenkiendy2003@gmail.com',
+              '${user.email!}',
               style: TextStyle(fontWeight: FontWeight.w400),
             ),
             currentAccountPicture: CircleAvatar(

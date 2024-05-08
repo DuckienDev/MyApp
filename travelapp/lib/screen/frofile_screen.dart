@@ -1,12 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
-import 'package:travelapp/apps/router/router_name.dart';
 
-class HomeProfile extends StatelessWidget {
+class HomeProfile extends StatefulWidget {
   const HomeProfile({super.key});
 
+  @override
+  State<HomeProfile> createState() => _HomeProfileState();
+}
+
+class _HomeProfileState extends State<HomeProfile> {
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +67,7 @@ class HomeProfile extends StatelessWidget {
                   'Email :',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                 ),
-                title: Text('nguyenkiendy2003@gmail.com'),
+                title: Text('${user.email!}'),
               ),
               Divider(),
               ListTile(
@@ -77,7 +82,17 @@ class HomeProfile extends StatelessWidget {
                 padding: const EdgeInsets.all(15.0),
                 child: InkWell(
                   onTap: () {
-                    context.goNamed(RouterName.welcome);
+                    FirebaseAuth.instance.signOut();
+                    // Future LogOut() async {
+                    //   showDialog(
+                    //       context: context,
+                    //       builder: (context) {
+                    //         return Center(
+                    //             child: CircularProgressIndicator(
+                    //                 color: Color.fromARGB(255, 170, 235, 255)));
+                    //       });
+                    //   await FirebaseAuth.instance.signOut();
+                    // }
                   },
                   child: Container(
                     width: double.infinity,
@@ -91,7 +106,7 @@ class HomeProfile extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'Log Out',
+                        'Sign Out',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w600),
                       ),
@@ -125,6 +140,7 @@ class HomeProfile extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       );
+
   Widget buildAvatarImage() => Container(
         width: 150,
         height: 150,

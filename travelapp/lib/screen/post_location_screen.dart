@@ -10,6 +10,7 @@ import 'package:travelapp/models/data_location.dart';
 import 'package:travelapp/provider/like_provider.dart';
 import 'package:travelapp/widget/PostWidget/post_button.dart';
 
+// ignore: must_be_immutable
 class PostScreen extends StatelessWidget {
   Location item;
   PostScreen({super.key, required this.item});
