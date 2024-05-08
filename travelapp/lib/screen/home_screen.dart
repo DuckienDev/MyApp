@@ -18,21 +18,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: HomeNavBar(),
       appBar: AppBar(
-        title: PreferredSize(
+        title: const PreferredSize(
           preferredSize: Size.fromHeight(90),
           child: HomeBar(),
         ),
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                HomeFavoriteCities(),
-                SizedBox(height: 20),
-                InformationBar(),
-                SizedBox(height: 10),
+                const HomeFavoriteCities(),
+                const SizedBox(height: 20),
+                const InformationBar(),
+                const SizedBox(height: 10),
                 HomeMain(),
               ],
             ),

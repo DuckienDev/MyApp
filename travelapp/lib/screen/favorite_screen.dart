@@ -8,7 +8,7 @@ import 'package:travelapp/provider/like_provider.dart';
 import 'package:travelapp/widget/HomeWidget/home_appbar_seach.dart';
 
 class FavorieScreen extends StatelessWidget {
-  FavorieScreen({super.key, required Location item});
+  const FavorieScreen({super.key, required Location item});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class FavorieScreen extends StatelessWidget {
         .toList();
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(90),
+        preferredSize: const Size.fromHeight(90),
         child: SafeArea(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -28,8 +28,8 @@ class FavorieScreen extends StatelessWidget {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => HomePage()));
                   },
-                  icon: Icon(Icons.arrow_back_ios_new)),
-              HomeBar(),
+                  icon: const Icon(Icons.arrow_back_ios_new)),
+              const HomeBar(),
             ],
           ),
         ),
@@ -46,7 +46,7 @@ class FavorieScreen extends StatelessWidget {
                     height: 200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(blurRadius: 2),
                       ],
                       image: DecorationImage(
@@ -58,7 +58,7 @@ class FavorieScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         data[index].name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.w800,
                             color: Colors.white),
@@ -68,7 +68,7 @@ class FavorieScreen extends StatelessWidget {
                 );
               },
             )
-          : Center(child: Text('Not Location Like')),
+          : const Center(child: Text('Not Location Like')),
     );
   }
 }

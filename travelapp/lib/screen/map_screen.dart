@@ -10,7 +10,7 @@ class MapScreenn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(90),
+        preferredSize: const Size.fromHeight(90),
         child: SafeArea(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -24,13 +24,13 @@ class MapScreenn extends StatelessWidget {
                       ),
                     );
                   },
-                  icon: Icon(Icons.arrow_back_ios_new)),
-              HomeBar(),
+                  icon: const Icon(Icons.arrow_back_ios_new)),
+              const HomeBar(),
             ],
           ),
         ),
       ),
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Image.asset(

@@ -11,77 +11,80 @@ class NotificationScreenn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(90),
+        preferredSize: const Size.fromHeight(90),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.only(left: 15, right: 15),
-            child: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePage(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      width: 45,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 2,
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
-                      child: Icon(Icons.arrow_back_ios_new, size: 20),
-                    ),
-                  ),
-                  Text(
-                    'Notification',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SettingScreen()));
-                    },
-                    child: Container(
-                      width: 45,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 3,
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
-                      child: Icon(
-                        Icons.settings,
-                        size: 20,
-                        color: Colors.black,
+                            builder: (context) => HomePage(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: 45,
+                        height: 45,
+                        decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black,
+                                blurRadius: 2,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white),
+                        child: const Icon(Icons.arrow_back_ios_new, size: 20),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10)
-            ]),
+                    const Text(
+                      'Notification',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SettingScreen()));
+                      },
+                      child: Container(
+                        width: 45,
+                        height: 45,
+                        decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black,
+                                blurRadius: 3,
+                              )
+                            ],
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white),
+                        child: const Icon(
+                          Icons.settings,
+                          size: 20,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10)
+              ],
+            ),
           ),
         ),
       ),
       body: ListView(
-        children: [
+        children: const [
           NotificationWidget(),
           SizedBox(height: 20),
           NotificationWidget(),

@@ -20,79 +20,69 @@ class _HomeProfileState extends State<HomeProfile> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           buildTop(),
-          SizedBox(height: 75),
-          Center(
+          const SizedBox(height: 75),
+          const Center(
             child: Text(
               'DucKien',
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Column(
             children: [
-              ListTile(
+              const ListTile(
                 leading: Text(
                   'Full Name :',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                 ),
                 title: Text('Nguyen Duc Kien'),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Text(
                   'Gender :',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                 ),
                 title: Text('Male'),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Text(
                   'Date Of Birth :',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                 ),
                 title: Text('10/06/2003'),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Text(
                   'Phone Number :',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                 ),
                 title: Text('0368665666'),
               ),
-              Divider(),
+              const Divider(),
               ListTile(
-                leading: Text(
+                leading: const Text(
                   'Email :',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                 ),
                 title: Text('${user.email!}'),
               ),
-              Divider(),
-              ListTile(
+              const Divider(),
+              const ListTile(
                 leading: Text(
                   'Address :',
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                 ),
                 title: Text('Ha Noi, Viet Nam'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: InkWell(
                   onTap: () {
                     FirebaseAuth.instance.signOut();
-                    // Future LogOut() async {
-                    //   showDialog(
-                    //       context: context,
-                    //       builder: (context) {
-                    //         return Center(
-                    //             child: CircularProgressIndicator(
-                    //                 color: Color.fromARGB(255, 170, 235, 255)));
-                    //       });
-                    //   await FirebaseAuth.instance.signOut();
-                    // }
                   },
                   child: Container(
                     width: double.infinity,
@@ -100,11 +90,11 @@ class _HomeProfileState extends State<HomeProfile> {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(blurRadius: 2, color: Colors.black)
                       ],
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Sign Out',
                         style: TextStyle(
@@ -141,7 +131,7 @@ class _HomeProfileState extends State<HomeProfile> {
         ),
       );
 
-  Widget buildAvatarImage() => Container(
+  Widget buildAvatarImage() => SizedBox(
         width: 150,
         height: 150,
         child: CircleAvatar(

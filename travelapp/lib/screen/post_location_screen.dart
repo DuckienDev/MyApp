@@ -28,19 +28,22 @@ class PostScreen extends StatelessWidget {
                 PageView(
                   controller: _controller,
                   children: [
-                    Container(
+                    SizedBox(
+                      width: double.infinity,
                       child: Image.network(
                         item.image[1],
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Container(
+                    SizedBox(
+                      width: double.infinity,
                       child: Image.network(
                         item.image[0],
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Container(
+                    SizedBox(
+                      width: double.infinity,
                       child: Image.network(
                         item.image[2],
                         fit: BoxFit.cover,
@@ -48,37 +51,21 @@ class PostScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
-                  child: SafeArea(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              context.goNamed(RouterName.homepage);
-                            },
-                            child: Container(
-                              width: 45,
-                              height: 45,
-                              decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black,
-                                      blurRadius: 3,
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.white),
-                              child: Icon(Icons.arrow_back_ios_new, size: 20),
-                            ),
-                          ),
-                          Container(
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            context.goNamed(RouterName.homepage);
+                          },
+                          child: Container(
                             width: 45,
                             height: 45,
                             decoration: BoxDecoration(
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                     color: Colors.black,
                                     blurRadius: 3,
@@ -86,20 +73,33 @@ class PostScreen extends StatelessWidget {
                                 ],
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.white),
-                            child: Consumer<LikeProviderLct>(
-                              builder: (context, value, child) => LikeButton(
-                                isLiked: value.listLikeLct.contains(item.id),
-                                onTap: (like) {
-                                  context
-                                      .read<LikeProviderLct>()
-                                      .onLike(item.id);
-                                  return Future.value(!like);
-                                },
-                              ),
+                            child:
+                                const Icon(Icons.arrow_back_ios_new, size: 20),
+                          ),
+                        ),
+                        Container(
+                          width: 45,
+                          height: 45,
+                          decoration: BoxDecoration(
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black,
+                                  blurRadius: 3,
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white),
+                          child: Consumer<LikeProviderLct>(
+                            builder: (context, value, child) => LikeButton(
+                              isLiked: value.listLikeLct.contains(item.id),
+                              onTap: (like) {
+                                context.read<LikeProviderLct>().onLike(item.id);
+                                return Future.value(!like);
+                              },
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -111,7 +111,7 @@ class PostScreen extends StatelessWidget {
                       child: SmoothPageIndicator(
                         controller: _controller,
                         count: item.image.length,
-                        effect: SwapEffect(
+                        effect: const SwapEffect(
                           dotColor: Colors.grey,
                           activeDotColor: Colors.white,
                           dotHeight: 10,
@@ -119,7 +119,7 @@ class PostScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10)
+                    const SizedBox(height: 10)
                   ],
                 ),
               ],

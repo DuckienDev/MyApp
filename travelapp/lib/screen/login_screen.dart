@@ -18,20 +18,29 @@ class _LogInScreen extends State<LogInScreen> {
   final _emailControler = TextEditingController();
   final _passwordControler = TextEditingController();
 
+  // ignore: non_constant_identifier_names
   Future SignIn() async {
     //loading circle
     showDialog(
         context: context,
         builder: (context) {
-          return Center(
-              child: CircularProgressIndicator(
-                  color: Color.fromARGB(255, 170, 235, 255)));
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Color.fromARGB(
+                255,
+                170,
+                235,
+                255,
+              ),
+            ),
+          );
         });
 
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: _emailControler.text.trim(),
       password: _passwordControler.text.trim(),
     );
+    Navigator.of(context).pop();
   }
 
   @override
@@ -49,24 +58,21 @@ class _LogInScreen extends State<LogInScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              //animation
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 300,
                 child:
                     Lottie.asset('images/home/Animation - 1714962010094.json'),
               ),
-              //Just go
               Text(
                 'Just go!',
                 style: GoogleFonts.bebasNeue(
                   fontSize: 45,
                 ),
               ),
-              SizedBox(height: 20),
-              //text
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
                   '    A trip is an exciting adventure where we leave everyday '
                   'life to explore new lands. It could be a journey to vibrant cities, '
@@ -77,19 +83,18 @@ class _LogInScreen extends State<LogInScreen> {
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
                 ),
               ),
-              SizedBox(height: 20),
-              //email
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextField(
                   controller: _emailControler,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: const BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     border: InputBorder.none,
@@ -97,8 +102,7 @@ class _LogInScreen extends State<LogInScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              //password
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextField(
@@ -106,11 +110,11 @@ class _LogInScreen extends State<LogInScreen> {
                   obscureText: true,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: const BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     border: InputBorder.none,
@@ -118,7 +122,7 @@ class _LogInScreen extends State<LogInScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Row(
@@ -129,9 +133,10 @@ class _LogInScreen extends State<LogInScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ForgotPasswordScreen()));
+                                builder: (context) =>
+                                    const ForgotPasswordScreen()));
                       },
-                      child: Text(
+                      child: const Text(
                         'Forgot password ?',
                         style: TextStyle(
                             fontWeight: FontWeight.w700, color: Colors.blue),
@@ -140,21 +145,19 @@ class _LogInScreen extends State<LogInScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
-
-              //sign in
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: GestureDetector(
                   onTap: SignIn,
                   child: Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(18),
+                    padding: const EdgeInsets.all(18),
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 170, 235, 255),
+                      color: const Color.fromARGB(255, 170, 235, 255),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Sign In',
                         style: TextStyle(
@@ -164,18 +167,17 @@ class _LogInScreen extends State<LogInScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              //not a member?register now
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Not a member?',
                     style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   GestureDetector(
                     onTap: widget.showRegisterPage,
-                    child: Text(
+                    child: const Text(
                       ' Register now.',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,

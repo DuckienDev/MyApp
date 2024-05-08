@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,45 +21,48 @@ class _RegisterPageState extends State<RegisterPage> {
   final _passwordControler = TextEditingController();
   final _confirmPasswordControler = TextEditingController();
   final _fullnameControler = TextEditingController();
-  final _dateofbirthControler = TextEditingController();
-  final _addressControler = TextEditingController();
-  final _numberphoneControler = TextEditingController();
 
   @override
   void dispose() {
     _emailControler.dispose();
     _passwordControler.dispose();
     _confirmPasswordControler.dispose();
-    _addressControler.dispose();
     _fullnameControler.dispose();
-    _dateofbirthControler.dispose();
-    _numberphoneControler.dispose();
 
     super.dispose();
   }
 
   Future signUp() async {
     if (passwordConfirm()) {
+      //loading circle
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: Color.fromARGB(
+                  255,
+                  170,
+                  235,
+                  255,
+                ),
+              ),
+            );
+          });
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailControler.text.trim(),
         password: _passwordControler.text.trim(),
       );
       addUserDetail(
         _fullnameControler.text.trim(),
-        _dateofbirthControler.text.trim(),
-        _addressControler.text.trim() as Int,
-        int.parse(_numberphoneControler.text.trim()) as String,
       );
     }
+    Navigator.of(context).pop();
   }
 
-  Future addUserDetail(
-      String name, String dateofbirth, Int numberphone, String Address) async {
+  Future addUserDetail(String name) async {
     await FirebaseFirestore.instance.collection('user').add({
       'name': name,
-      'date of birth': dateofbirth,
-      'number phone': numberphone,
-      'address': Address,
     });
   }
 
@@ -80,39 +82,35 @@ class _RegisterPageState extends State<RegisterPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              //animation
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 300,
                 child:
                     Lottie.asset('images/home/Animation - 1714962010094.json'),
               ),
-              //Just go
               Text(
                 'Welcome!',
                 style: GoogleFonts.bebasNeue(
                   fontSize: 45,
                 ),
               ),
-              SizedBox(height: 10),
-              Text(
+              const SizedBox(height: 10),
+              const Text(
                 'Please complete all information!',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
               ),
-
-              SizedBox(height: 20),
-              //name
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextField(
                   controller: _fullnameControler,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: const BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     border: InputBorder.none,
@@ -120,79 +118,18 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              //date of birth
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextField(
-                  controller: _dateofbirthControler,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    border: InputBorder.none,
-                    hintText: 'Date Of Birth',
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              //number phone
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextField(
-                  controller: _numberphoneControler,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    border: InputBorder.none,
-                    hintText: 'Number Phone',
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              //Address
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextField(
-                  controller: _addressControler,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    border: InputBorder.none,
-                    hintText: 'Address',
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              //email
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextField(
                   controller: _emailControler,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: const BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     border: InputBorder.none,
@@ -200,8 +137,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              //password
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextField(
@@ -209,11 +145,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   obscureText: true,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: const BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     border: InputBorder.none,
@@ -221,8 +157,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              //confirm password
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextField(
@@ -230,11 +165,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   obscureText: true,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                      borderSide: const BorderSide(color: Colors.grey),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     border: InputBorder.none,
@@ -242,20 +177,19 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              //sign in
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: GestureDetector(
                   onTap: signUp,
                   child: Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(18),
+                    padding: const EdgeInsets.all(18),
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 170, 235, 255),
+                      color: const Color.fromARGB(255, 170, 235, 255),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Sign Up',
                         style: TextStyle(
@@ -265,18 +199,17 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              //not a member?register now
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'You have an account?',
                     style: TextStyle(fontWeight: FontWeight.w700),
                   ),
                   GestureDetector(
                     onTap: widget.showLoginPage,
-                    child: Text(
+                    child: const Text(
                       ' Log In.',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
@@ -286,7 +219,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   )
                 ],
               ),
-              SizedBox(height: 20)
+              const SizedBox(height: 20)
             ],
           ),
         ),

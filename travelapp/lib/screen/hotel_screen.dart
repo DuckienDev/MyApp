@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:travelapp/home_main.dart';
 import 'package:travelapp/mockup/hotel_mockup.dart';
 import 'package:travelapp/widget/HomeWidget/home_appbar_seach.dart';
-import 'package:travelapp/widget/HotelWidget/app_bar_restaurant.dart';
+import 'package:travelapp/widget/HotelWidget/app_bar_hotel.dart';
 
 class HotelScreen extends StatefulWidget {
   const HotelScreen({super.key});
@@ -19,7 +19,7 @@ class _HotelScreen extends State<HotelScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(175),
+        preferredSize: const Size.fromHeight(175),
         child: SafeArea(
           child: SafeArea(
             child: Padding(
@@ -38,11 +38,11 @@ class _HotelScreen extends State<HotelScreen> {
                               ),
                             );
                           },
-                          icon: Icon(Icons.arrow_back_ios_new)),
-                      HomeBar(),
+                          icon: const Icon(Icons.arrow_back_ios_new)),
+                      const HomeBar(),
                     ],
                   ),
-                  AppBarRestaurant(),
+                  const AppBarRestaurant(),
                 ],
               ),
             ),
@@ -60,7 +60,7 @@ class _HotelScreen extends State<HotelScreen> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(color: Colors.black, blurRadius: 2),
                   ]),
               child: Row(
@@ -68,7 +68,7 @@ class _HotelScreen extends State<HotelScreen> {
                   Container(
                     width: 150,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(15),
                           bottomLeft: Radius.circular(15)),
                       image: DecorationImage(
@@ -77,7 +77,7 @@ class _HotelScreen extends State<HotelScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 40),
+                  const SizedBox(width: 40),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -85,25 +85,25 @@ class _HotelScreen extends State<HotelScreen> {
                         children: [
                           Text(
                             dataHotel[index].star,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.w600),
                           ),
-                          SizedBox(width: 3),
-                          Icon(Icons.star, color: Colors.amber, size: 18),
-                          Icon(Icons.star, color: Colors.amber, size: 18),
-                          Icon(Icons.star, color: Colors.amber, size: 18),
-                          Icon(Icons.star, color: Colors.amber, size: 18),
-                          Icon(Icons.star_border,
+                          const SizedBox(width: 3),
+                          const Icon(Icons.star, color: Colors.amber, size: 18),
+                          const Icon(Icons.star, color: Colors.amber, size: 18),
+                          const Icon(Icons.star, color: Colors.amber, size: 18),
+                          const Icon(Icons.star, color: Colors.amber, size: 18),
+                          const Icon(Icons.star_border,
                               color: Colors.black, size: 17),
                         ],
                       ),
-                      SizedBox(height: 5),
-                      Container(
+                      const SizedBox(height: 5),
+                      SizedBox(
                         width: 150,
                         child: Center(
                           child: Text(
                             dataHotel[index].name,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
                             ),
@@ -111,10 +111,10 @@ class _HotelScreen extends State<HotelScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(
                         dataHotel[index].price,
-                        style: TextStyle(fontSize: 12),
+                        style: const TextStyle(fontSize: 12),
                       ),
                     ],
                   )

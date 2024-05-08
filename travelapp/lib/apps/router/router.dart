@@ -15,7 +15,7 @@ class RouterCustom {
         path: '/',
         name: RouterName.login,
         builder: (BuildContext context, GoRouterState state) {
-          return MainPage();
+          return const MainPage();
         },
       ),
       GoRoute(
