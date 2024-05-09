@@ -26,12 +26,7 @@ class _LogInScreen extends State<LogInScreen> {
         builder: (context) {
           return const Center(
             child: CircularProgressIndicator(
-              color: Color.fromARGB(
-                255,
-                170,
-                235,
-                255,
-              ),
+              color: Color.fromARGB(255, 170, 235, 255),
             ),
           );
         });
