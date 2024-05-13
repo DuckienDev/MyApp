@@ -9,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp.router(
         routerConfig: RouterCustom.router,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFEDF2F6)),
+        theme: ThemeData(scaffoldBackgroundColor: Color(0xFFEDF2F6)),
       ),
     );
   }

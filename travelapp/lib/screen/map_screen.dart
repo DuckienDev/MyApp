@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:travelapp/home_main.dart';
 import 'package:travelapp/widget/HomeWidget/home_appbar_seach.dart';
 
-class MapScreenn extends StatefulWidget {
+class MapScreenn extends StatelessWidget {
   const MapScreenn({super.key});
-
-  @override
-  State<MapScreenn> createState() => _MapScreennState();
-}
-
-class _MapScreennState extends State<MapScreenn> {
-  late GoogleMapController googleMapController;
-  static const CameraPosition initialCameraPosition =
-      CameraPosition(target: LatLng(20.96754, 105.87046), zoom: 13);
-  Set<Marker> markers = {};
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +30,13 @@ class _MapScreennState extends State<MapScreenn> {
           ),
         ),
       ),
-      body: GoogleMap(
-        initialCameraPosition: initialCameraPosition,
-        markers: markers,
-        zoomControlsEnabled: true,
-        mapType: MapType.normal,
-        onMapCreated: (GoogleMapController controller) {
-          googleMapController = controller;
-        },
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Image.asset(
+          'images/Logo/ggmapImg.png',
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
