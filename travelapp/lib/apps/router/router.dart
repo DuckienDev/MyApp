@@ -5,11 +5,15 @@ import 'package:travelapp/home_main.dart';
 import 'package:travelapp/auth/main_page.dart';
 import 'package:travelapp/models/data_location.dart';
 import 'package:travelapp/screen/favorite_screen.dart';
+import 'package:travelapp/screen/notification_screen.dart';
 import 'package:travelapp/screen/post_location_screen.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 class RouterCustom {
   static final GoRouter router = GoRouter(
     initialLocation: '/',
+    navigatorKey: navigatorKey,
     routes: <RouteBase>[
       GoRoute(
         path: '/',
@@ -52,6 +56,14 @@ class RouterCustom {
             },
           ),
         ],
+      ),
+      GoRoute(
+        parentNavigatorKey: navigatorKey,
+        path: '/notification',
+        name: RouterName.notification,
+        builder: (BuildContext context, GoRouterState state) {
+          return const NotificationScreenn();
+        },
       ),
     ],
   );

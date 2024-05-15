@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:travelapp/api/firebase_api.dart';
 import 'package:travelapp/apps/router/router.dart';
 import 'package:travelapp/provider/like_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'api/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseApi().initNotifications();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -33,7 +36,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp.router(
         routerConfig: RouterCustom.router,
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(scaffoldBackgroundColor: Color(0xFFEDF2F6)),
+        theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFEDF2F6)),
       ),
     );
   }

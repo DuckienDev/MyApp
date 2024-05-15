@@ -62,7 +62,7 @@ class AirPlanceScreen extends StatelessWidget {
                     ),
                     child: const Center(
                       child: Text(
-                        'Book Now',
+                        'Check Now',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,

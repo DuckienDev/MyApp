@@ -127,7 +127,7 @@ class PostScreen extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.only(top: 20),
               child: PostBottomBar(item: item),
             ),
           ),
