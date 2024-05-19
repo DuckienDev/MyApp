@@ -21,30 +21,28 @@ class _HotelScreen extends State<HotelScreen> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(175),
         child: SafeArea(
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomePage(),
-                              ),
-                            );
-                          },
-                          icon: const Icon(Icons.arrow_back_ios_new)),
-                      const HomeBar(),
-                    ],
-                  ),
-                  const AppBarRestaurant(),
-                ],
-              ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePage(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.arrow_back_ios_new)),
+                    const HomeBar(),
+                  ],
+                ),
+                const AppBarRestaurant(),
+              ],
             ),
           ),
         ),

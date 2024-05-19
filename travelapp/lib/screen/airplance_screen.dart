@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:travelapp/screen/ticket_selection.dart';
 import 'package:travelapp/widget/AirPlanceWidget/app_bar_air.dart';
 import 'package:travelapp/widget/AirPlanceWidget/choose_air.dart';
 import 'package:travelapp/widget/AirPlanceWidget/select_trip_air.dart';
@@ -47,7 +48,12 @@ class AirPlanceScreen extends StatelessWidget {
               const SelectTripAir(),
               const SizedBox(height: 20),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TicketSelection()));
+                },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Container(
@@ -62,7 +68,7 @@ class AirPlanceScreen extends StatelessWidget {
                     ),
                     child: const Center(
                       child: Text(
-                        'Check Now',
+                        'Search Now',
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,

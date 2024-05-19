@@ -38,6 +38,8 @@ flutter:
   assets:
     - images/home/
     - images/Logo/
+    - images/abc.jpng
+    - images/ABCD.png
 
 fonts:
   - family: Candu

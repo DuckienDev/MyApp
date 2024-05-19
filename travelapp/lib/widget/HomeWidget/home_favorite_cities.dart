@@ -18,7 +18,7 @@ class HomeFavoriteCities extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
-                return InkWell(
+                return GestureDetector(
                   onTap: () {},
                   child: Container(
                     width: 160,
