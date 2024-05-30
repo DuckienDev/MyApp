@@ -461,7 +461,7 @@ class _FlightInfScreenState extends State<FlightInfScreen> {
                 Container(
                   margin: EdgeInsets.all(10),
                   width: double.infinity,
-                  height: 240,
+                  height: 250,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       color: Colors.white),

@@ -173,23 +173,12 @@ class _TicketPaymentScreenState extends State<TicketPaymentScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 10.0),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          height: 30,
-                          child: Image.network(
-                            'https://th.bing.com/th/id/OIP.LMwzmOS4wFNhM1w_8S4THgHaEK?rs=1&pid=ImgDetMain',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                          child: Image.network(
-                            'https://1000logos.net/wp-content/uploads/2017/03/MasterCard-Logo-1990.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
+                    child: SizedBox(
+                      height: 30,
+                      child: Image.network(
+                        'https://th.bing.com/th/id/OIP.LMwzmOS4wFNhM1w_8S4THgHaEK?rs=1&pid=ImgDetMain',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ],

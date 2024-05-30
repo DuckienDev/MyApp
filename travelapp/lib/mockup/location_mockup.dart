@@ -100,7 +100,8 @@ List<Location> dataLocation = [
     id: 07,
     image: [
       'https://irisvisa.vn/wp-content/uploads/2021/11/Aicap.png',
-      'https://dichvuxinvisa.com/wp-content/uploads/2021/05/Du-lich-song-Nile-Ai-Cap.jpg',
+      'https://facts.net/wp-content/uploads/2023/06/38-facts-about-egypt-1688101892.jpeg',
+      'https://www.state.gov/wp-content/uploads/2023/07/shutterstock_1037036482v2.jpg',
       'https://visana.vn/wp-content/uploads/2019/09/Great-Sphinx-du-lich-ai-cap.jpg',
     ],
     name: 'Egypt',
@@ -133,8 +134,8 @@ List<Location> dataLocation = [
     id: 09,
     image: [
       'https://th.bing.com/th/id/OIP.qcXVfh9cUi2BpJrGZeFRpAHaEo?w=294&h=183&c=7&r=0&o=5&pid=1.7',
-      'https://useful.vn/wp-content/uploads/2020/04/1559815487487_8795005.jpg',
-      'https://th.bing.com/th/id/OIP.sUlj048DQnqAULDHyIGFBgHaEl?w=269&h=180&c=7&r=0&o=5&pid=1.7'
+      'https://lp-cms-production.imgix.net/2019-06/09a64fea2933f6da77ab07d671d1f678-south-korea.jpg',
+      'https://th.bing.com/th/id/OIP.sUlj048DQnqAULDHyIGFBgHaEl?w=269&h=180&c=7&r=0&o=5&pid=1.7',
     ],
     name: 'Korea',
     star: '4.8',
