@@ -18,12 +18,13 @@ class _HomeProfileState extends State<HomeProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          title: Center(
-              child: Text(
-            'Profile',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
-          ))),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          'Profile',
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
+        ),
+      ),
       backgroundColor: Colors.grey[250],
       body: ListView(
         padding: EdgeInsets.zero,

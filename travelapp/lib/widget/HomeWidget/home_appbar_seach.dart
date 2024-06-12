@@ -18,7 +18,7 @@ class HomeBar extends StatelessWidget {
             ),
             SizedBox(width: 5),
             Text(
-              'New York, USA',
+              'Ha Noi, VN     ',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w400,

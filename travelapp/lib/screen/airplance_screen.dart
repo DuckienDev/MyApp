@@ -80,7 +80,7 @@ class AirPlanceScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const Text(
-                'Where do you want to go today?',
+                'Where do you want to go ?',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 20),

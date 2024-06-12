@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "80335677485",
+    "project_id": "appgemini-c16ea",
+    "storage_bucket": "appgemini-c16ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:80335677485:android:7f1ece49d92eec9443f0a4",
+        "android_client_info": {
+          "package_name": "com.example.gemini_ai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTym3shyhe9AG5GUISZEIfU9H7ajOog0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
