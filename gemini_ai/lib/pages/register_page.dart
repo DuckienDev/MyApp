@@ -212,7 +212,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: Theme.of(context).colorScheme.primary,
                         ),
                         Text(
-                          ' Return',
+                          ' Come back',
                           style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.w600),

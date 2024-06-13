@@ -21,14 +21,14 @@ class _ForgotPwPageState extends State<ForgotPwPage> {
   ressetPassword() async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Password resset email has been sent!"),
       ));
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("User not found for that email."),
-          backgroundColor: const Color.fromARGB(255, 234, 98, 88),
+          backgroundColor: Color.fromARGB(255, 234, 98, 88),
         ));
       }
     }

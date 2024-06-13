@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
           .showSnackBar(const SnackBar(content: Text("Sign in successfully.")));
       Navigator.pop(context);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         Navigator.pop(context);
@@ -214,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       Text(
-                        ' Return',
+                        ' Come back',
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary,
                             fontWeight: FontWeight.w600),

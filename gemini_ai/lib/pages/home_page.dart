@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:gemini_ai/pages/%C2%A0welcome_page.dart';
+import 'package:gemini_ai/pages/notification_page.dart';
 import 'package:gemini_ai/service/database.dart';
 import 'package:gemini_ai/theme/consts.dart';
 import 'package:image_picker/image_picker.dart';
@@ -50,16 +51,19 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.person),
+          icon: const Icon(Icons.person),
           onPressed: () {
             Profile();
           },
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
-              Notification();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const NotificationPage()));
             },
           ),
         ],
@@ -97,17 +101,35 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void Notification() {
+  void Setting() {
     showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(
-              'NOTIFICATION',
-              style: TextStyle(fontWeight: FontWeight.w600),
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text(
+            'SETTINGS',
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
+          content: SizedBox(
+            height: 100,
+            child: ListView(
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.notifications),
+                  title: const Text('Notification'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NotificationPage()));
+                  },
+                ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 
   // ignore: non_constant_identifier_names
@@ -133,12 +155,14 @@ class _HomePageState extends State<HomePage> {
                 GetUserName(users.email!),
                 const SizedBox(height: 10),
                 Text(users.email!),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
                     FirebaseAuth.instance.signOut();
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => WelcomePage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const WelcomePage()));
                   },
                   child: Container(
                     decoration: BoxDecoration(
