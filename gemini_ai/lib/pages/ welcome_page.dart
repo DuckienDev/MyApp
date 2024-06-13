@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gemini_ai/consts.dart';
 import 'package:gemini_ai/pages/login_page.dart';
 import 'package:gemini_ai/pages/register_page.dart';
+import 'package:gemini_ai/theme/consts.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

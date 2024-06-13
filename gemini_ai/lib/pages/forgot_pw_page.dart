@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:gemini_ai/consts.dart';
 import 'package:gemini_ai/pages/login_page.dart';
 import 'package:gemini_ai/pages/register_page.dart';
+import 'package:gemini_ai/theme/consts.dart';
 
 class ForgotPwPage extends StatefulWidget {
   const ForgotPwPage({super.key});

@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gemini_ai/consts.dart';
 import 'package:gemini_ai/pages/forgot_pw_page.dart';
 import 'package:gemini_ai/pages/home_page.dart';
 import 'package:gemini_ai/service/auth.dart';
+import 'package:gemini_ai/theme/consts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

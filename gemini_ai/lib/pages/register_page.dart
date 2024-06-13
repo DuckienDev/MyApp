@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gemini_ai/consts.dart';
 import 'package:gemini_ai/pages/home_page.dart';
+import 'package:gemini_ai/theme/consts.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -21,7 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final _formkey = GlobalKey<FormState>();
 
-  registration() async {
+  void registration() async {
     showDialog(
         context: context,
         builder: (context) {
@@ -36,7 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
         await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
         Future addUserDetail(String name, String email) async {
-          await FirebaseFirestore.instance.collection('User').add({
+          await FirebaseFirestore.instance.collection('User').doc(email).set({
             'name': name,
             'email': email,
           });
@@ -45,7 +45,6 @@ class _RegisterPageState extends State<RegisterPage> {
         addUserDetail(_nameControler.text.trim(), _emailControler.text.trim());
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Registered successfully.")));
-        Navigator.pop(context);
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const HomePage()));
       } on FirebaseAuthException catch (e) {

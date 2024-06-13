@@ -1,13 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
-import 'package:gemini_ai/consts.dart';
 import 'package:gemini_ai/service/auth.dart';
+import 'package:gemini_ai/theme/consts.dart';
+
 import 'package:gemini_ai/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      // options: DefaultFirebaseOptions.currentPlatform,
+      );
   Gemini.init(apiKey: GEMINI_API_KEY);
   runApp(const MyApp());
 }

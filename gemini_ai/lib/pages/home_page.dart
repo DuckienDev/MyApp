@@ -5,9 +5,9 @@ import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
-import 'package:gemini_ai/consts.dart';
 import 'package:gemini_ai/pages/%C2%A0welcome_page.dart';
 import 'package:gemini_ai/service/database.dart';
+import 'package:gemini_ai/theme/consts.dart';
 import 'package:image_picker/image_picker.dart';
 
 class HomePage extends StatefulWidget {
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           content: Container(
-            height: 260,
+            height: 230,
             child: Column(
               children: [
                 CircleAvatar(
@@ -130,7 +130,7 @@ class _HomePageState extends State<HomePage> {
                       currentUser.profileImage.toString(),
                     )),
                 const SizedBox(height: 15),
-                GetUserName(),
+                GetUserName(users.email!),
                 const SizedBox(height: 10),
                 Text(users.email!),
                 SizedBox(height: 20),
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _sendMessage(ChatMessage chatMessage) {
+  Future<void> _sendMessage(ChatMessage chatMessage) async {
     setState(() {
       messages = [chatMessage, ...messages];
     });
