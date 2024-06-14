@@ -9,7 +9,7 @@ class FirebaseApi {
 
     final fCTMToken = await _firebaseMessaging.getToken();
 
-    print("Token:  ${fCTMToken}");
+    print("Token:${fCTMToken}");
     initPushNotifications();
   }
 

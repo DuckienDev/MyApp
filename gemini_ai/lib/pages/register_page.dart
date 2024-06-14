@@ -45,6 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
         addUserDetail(_nameControler.text.trim(), _emailControler.text.trim());
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Registered successfully.")));
+
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const HomePage()));
       } on FirebaseAuthException catch (e) {

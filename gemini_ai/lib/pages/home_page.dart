@@ -101,37 +101,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void Setting() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text(
-            'SETTINGS',
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-          content: SizedBox(
-            height: 100,
-            child: ListView(
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.notifications),
-                  title: const Text('Notification'),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const NotificationPage()));
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   // ignore: non_constant_identifier_names
   void Profile() {
     showDialog(
