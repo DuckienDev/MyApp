@@ -4,7 +4,6 @@ import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:gemini_ai/api/firebase_api.dart';
 import 'package:gemini_ai/firebase_options.dart';
 import 'package:gemini_ai/pages/notification_page.dart';
-
 import 'package:gemini_ai/service/auth.dart';
 import 'package:gemini_ai/theme/consts.dart';
 import 'package:gemini_ai/theme/theme.dart';
