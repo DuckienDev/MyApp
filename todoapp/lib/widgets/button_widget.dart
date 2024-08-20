@@ -17,7 +17,7 @@ class ButtonWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: Theme.of(context).colorScheme.tertiary,
+          color: Theme.of(context).colorScheme.surface,
         ),
         height: 50,
         child: Center(
@@ -25,7 +25,7 @@ class ButtonWidget extends StatelessWidget {
             nameButton,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.surface,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
         ),

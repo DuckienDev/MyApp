@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/pages/add_todo_page.dart';
 import 'package:todoapp/models/task_model.dart';
+import 'package:todoapp/pages/setting_page.dart';
 import 'package:todoapp/sevices/database_sevice.dart';
-import 'package:todoapp/widgets/button_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,15 +12,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // GET DATA
-  final DatabaseService _databaseSevice = DatabaseService.instance;
-  String? _task;
+  final DatabaseService _databaseService = DatabaseService.instance;
+  late Future<List<Task>> _tasksFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _tasksFuture = _databaseService.getTasks();
+  }
+
+  Future<void> _refreshTasks() async {
+    setState(() {
+      _tasksFuture = _databaseService.getTasks();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    //UI
     return Scaffold(
-      //APPBAR
+      // APP BAR
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
@@ -28,95 +39,81 @@ class _HomePageState extends State<HomePage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: [
+          // NAVIGATOR SETTING
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingPage()));
+            },
+            icon: const Icon(Icons.settings),
+          ),
+        ],
       ),
 
-      //LIST TODO
+      // LIST TODO
       backgroundColor: Theme.of(context).colorScheme.secondary,
-      body: FutureBuilder(
-        future: _databaseSevice.getTasks(),
+      body: FutureBuilder<List<Task>>(
+        future: _tasksFuture,
         builder: (context, snapshot) {
-          return ListView.builder(
-            itemCount: snapshot.data?.length ?? 0,
-            itemBuilder: (context, index) {
-              Task task = snapshot.data![index];
-              return ListTile(
-                onLongPress: () {
-                  _databaseSevice.deleteTodo(task.id);
-                  setState(() {});
-                },
-                leading: CircleAvatar(child: Text(task.id.toString())),
-                title: Text(task.content),
-                trailing: Checkbox(
-                    value: task.status == 1,
-                    onChanged: (value) {
-                      _databaseSevice.updateTask(
-                        task.id,
-                        value == true ? 1 : 0,
-                      );
-                      setState(() {});
-                    }),
-              );
-            },
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No tasks available'));
+          }
+
+          final tasks = snapshot.data!;
+
+          return Padding(
+            padding: const EdgeInsets.only(top: 5.0),
+            child: ListView.builder(
+              itemCount: tasks.length,
+              itemBuilder: (context, index) {
+                final task = tasks[index];
+                return Column(
+                  children: [
+                    ListTile(
+                      onLongPress: () async {
+                        checkDeleteTask(context, task);
+                      },
+                      title: Text(
+                        task.time.toString(),
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      subtitle: Text(task.content),
+                      trailing: Checkbox(
+                        value: task.status == 1,
+                        onChanged: (value) {
+                          _databaseService.updateTask(
+                            task.id,
+                            value == true ? 1 : 0,
+                          );
+                          _refreshTasks();
+                        },
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Divider(),
+                    ),
+                  ],
+                );
+              },
+            ),
           );
         },
       ),
 
-      //ADD TODO
+      // NAVIGATO ADD TODO
       floatingActionButton: ElevatedButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (_) => AlertDialog(
-              titleTextStyle: TextStyle(fontSize: 15),
-              title: Text(
-                'A D D T A S K',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.tertiary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    maxLength: 123,
-                    maxLines: 3,
-                    onChanged: (value) {
-                      setState(() {
-                        _task = value;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).colorScheme.secondary),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Theme.of(context).colorScheme.primary),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      border: InputBorder.none,
-                      hintText: 'Subcribe...',
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  ButtonWidget(
-                    nameButton: "DONE",
-                    onTap: () {
-                      if (_task == null || _task == "") return;
-                      _databaseSevice.addTodo(_task!);
-                      setState(() {
-                        _task = null;
-                      });
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
-              ),
-            ),
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddTodo()),
           );
+          _refreshTasks();
         },
         child: Text(
           'ADD TASK',
@@ -125,6 +122,38 @@ class _HomePageState extends State<HomePage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+      ),
+    );
+  }
+
+  //CHECK DELETE TASK
+  Future<dynamic> checkDeleteTask(BuildContext context, Task task) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text(
+          "Do you wan't delete?",
+          style: TextStyle(fontSize: 17),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              _databaseService.deleteTask(task.id);
+              Navigator.pop(context);
+              _refreshTasks();
+            },
+            icon: const Icon(
+              Icons.check,
+              color: Colors.red,
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.clear),
+          ),
+        ],
       ),
     );
   }

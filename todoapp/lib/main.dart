@@ -1,10 +1,19 @@
+import 'package:provider/provider.dart';
+import 'package:spaces2/spaces2.dart';
 import 'package:flutter/material.dart';
 import 'package:todoapp/pages/home_page.dart';
-import 'package:todoapp/themes/dark_theme.dart';
-import 'package:todoapp/themes/light_theme.dart';
+import 'package:todoapp/themes/theme_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    Spacing.fixed(
+      data: SpacingData.generate(16),
+      child: ChangeNotifierProvider(
+        create: (context) => ThemeProvider(),
+        child: const MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const HomePage(),
-      theme: lightTheme,
+      theme: Provider.of<ThemeProvider>(context).themeData,
       debugShowCheckedModeBanner: false,
     );
   }

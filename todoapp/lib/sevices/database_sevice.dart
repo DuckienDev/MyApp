@@ -8,12 +8,13 @@ class DatabaseService {
   final String _taskIdColumnName = 'id';
   final String _taskContentColumnName = 'content';
   final String _taskStatusColumnName = 'status';
+  final String _taskTimeColumnName = 'time';
 
   static Database? _db;
   static final DatabaseService instance = DatabaseService._constructor();
   DatabaseService._constructor();
 
-  //CHECK TABLE
+  //INITIALIZE DATABASE
   Future<Database> get database async {
     if (_db != null) {
       return _db!;
@@ -23,10 +24,10 @@ class DatabaseService {
     }
   }
 
-  // CREATE TABLE
+  // CREATE DATABASE
   Future<Database> getDatabase() async {
     final databaseDirPath = await getDatabasesPath();
-    final databasePath = join(databaseDirPath, 'todo_db.db');
+    final databasePath = join(databaseDirPath, 'todo_app.db');
     return openDatabase(
       databasePath,
       version: 1,
@@ -36,47 +37,64 @@ class DatabaseService {
           CREATE TABLE $_taskTableName (
             $_taskIdColumnName INTEGER PRIMARY KEY AUTOINCREMENT,
             $_taskContentColumnName TEXT NOT NULL,
-            $_taskStatusColumnName INTEGER NOT NULL
+            $_taskStatusColumnName INTEGER NOT NULL,
+            $_taskTimeColumnName TEXT NOT NULL
           )
         ''');
-          print('Table $_taskTableName created successfully');
+          print('Table $_taskTableName created successfully!');
         } catch (e) {
           print('Error creating table: $e');
         }
       },
       onUpgrade: (db, oldVersion, newVersion) {
-        // Xử lý nâng cấp nếu cần
+        if (oldVersion < newVersion) {
+          db.execute(
+              'ALTER TABLE $_taskTableName ADD COLUMN $_taskTimeColumnName TEXT');
+        }
+        return;
       },
     );
   }
 
   // ADD TASK
-  void addTodo(String content) async {
-    final db = await database;
-    await db.rawInsert(
-      'INSERT INTO $_taskTableName ($_taskContentColumnName, $_taskStatusColumnName) VALUES (?, ?)',
-      [content, 0],
-    );
+  void addTodo(String content, String time) async {
+    try {
+      final db = await database;
+      await db.rawInsert(
+        'INSERT INTO $_taskTableName ($_taskContentColumnName, $_taskStatusColumnName, $_taskTimeColumnName) VALUES (?, ?, ?)',
+        [content, 0, time],
+      );
+      print('successfully');
+    } catch (e) {
+      print(e);
+      print('error');
+    }
   }
 
   // READ TASK
   Future<List<Task>> getTasks() async {
-    final db = await database;
-    final data = await db.query(_taskTableName);
-    List<Task> tasks = data
-        .map(
-          (e) => Task(
-            id: e[_taskIdColumnName] as int,
-            content: e[_taskContentColumnName] as String,
-            status: e[_taskStatusColumnName] as int,
-          ),
-        )
-        .toList();
-    return tasks;
+    try {
+      final db = await database;
+      final data = await db.query(_taskTableName);
+      List<Task> tasks = data
+          .map(
+            (e) => Task(
+              id: e[_taskIdColumnName] as int,
+              content: e[_taskContentColumnName] as String,
+              status: e[_taskStatusColumnName] as int,
+              time: e[_taskTimeColumnName] as String,
+            ),
+          )
+          .toList();
+      return tasks;
+    } catch (e) {
+      print('Error retrieving tasks: $e');
+      return []; // Trả về danh sách rỗng nếu có lỗi
+    }
   }
 
   // DELETE TASK
-  Future<void> deleteTodo(int id) async {
+  Future<void> deleteTask(int id) async {
     final db = await database;
     await db.delete(
       _taskTableName,
