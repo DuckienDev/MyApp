@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:todoapp/pages/home_page.dart';
 import 'package:todoapp/themes/theme_provider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     Spacing.fixed(
       data: SpacingData.generate(16),

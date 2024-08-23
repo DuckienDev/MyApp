@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:todoapp/widgets/button_widget.dart';
 import '../sevices/database_sevice.dart';
+import 'package:todoapp/widgets/button_widget.dart';
 import 'package:time_picker_wheel/time_picker_wheel.dart';
 
 class AddTodo extends StatefulWidget {
@@ -14,7 +14,9 @@ class AddTodo extends StatefulWidget {
 class _AddTodoState extends State<AddTodo> {
   final DatabaseService _databaseSevice = DatabaseService.instance;
   String? _task;
-  String customizePickerTime = '';
+  late int _hour;
+  late int _minute;
+  String _period = '';
   @override
   Widget build(BuildContext context) {
     //UI
@@ -51,7 +53,8 @@ class _AddTodoState extends State<AddTodo> {
             TimePicker(
               onChange: (timeOfDay) {
                 setState(() {
-                  customizePickerTime = getFormatedTimeFromTimeOfDay(timeOfDay);
+                  _hour = getFormatedHourFromTimeOfDay(timeOfDay);
+                  _minute = getFormatedMinuteFromTimeOfDay(timeOfDay);
                 });
               },
               options: TimePickerOptions.byDefault(
@@ -130,26 +133,31 @@ class _AddTodoState extends State<AddTodo> {
   //ADD TASK FUNC
   void addTaskFunction() {
     if (_task == null || _task == "") return;
-    _databaseSevice.addTodo(
-      _task!,
-      customizePickerTime,
-    );
+    _hour <= 12 ? _period = 'AM' : _period = 'PM';
+
+    _databaseSevice.addTodo(_task!, _hour, _minute, _period);
     setState(() {
       _task = null;
-      customizePickerTime = '';
+      _hour = 0;
+      _minute = 0;
+      _period = '';
     });
     Navigator.pop(context);
   }
 
   //GET TIME
-  String getFormatedTimeFromTimeOfDay(TimeOfDay timeOfDay) {
-    final hour = timeOfDay.hourOfPeriod.toString().padLeft(2, '0');
+  int getFormatedHourFromTimeOfDay(TimeOfDay timeOfDay) {
+    final hour = timeOfDay.hourOfPeriod - 12;
     final minute = timeOfDay.minute.toString().padLeft(2, '0');
     final period = timeOfDay.period.name.toUpperCase();
 
     String time = '$hour:$minute $period';
     log(time);
+    return hour;
+  }
 
-    return time;
+  int getFormatedMinuteFromTimeOfDay(TimeOfDay timeOfDay) {
+    final minute = timeOfDay.minute;
+    return minute;
   }
 }

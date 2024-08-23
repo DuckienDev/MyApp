@@ -3,6 +3,7 @@ import 'package:todoapp/pages/add_todo_page.dart';
 import 'package:todoapp/models/task_model.dart';
 import 'package:todoapp/pages/setting_page.dart';
 import 'package:todoapp/sevices/database_sevice.dart';
+import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -72,15 +73,28 @@ class _HomePageState extends State<HomePage> {
               itemCount: tasks.length,
               itemBuilder: (context, index) {
                 final task = tasks[index];
+
                 return Column(
                   children: [
                     ListTile(
                       onLongPress: () async {
                         checkDeleteTask(context, task);
                       },
-                      title: Text(
-                        task.time.toString(),
-                        style: const TextStyle(fontSize: 20),
+                      title: Row(
+                        children: [
+                          Text(
+                            task.hour.toString().padLeft(2, '0'),
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                          Text(
+                            ' : ${task.minute.toString().padLeft(2, '0')}',
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                          Text(
+                            ' ${task.period.toString()} ',
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                        ],
                       ),
                       subtitle: Text(task.content),
                       trailing: Checkbox(
@@ -90,6 +104,13 @@ class _HomePageState extends State<HomePage> {
                             task.id,
                             value == true ? 1 : 0,
                           );
+                          if (value == true) {
+                            FlutterAlarmClock.createAlarm(
+                              hour: task.hour,
+                              minutes: task.minute,
+                            );
+                          }
+
                           _refreshTasks();
                         },
                       ),
