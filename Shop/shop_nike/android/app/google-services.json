@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "828994179758",
+    "project_id": "shopnike-3990c",
+    "storage_bucket": "shopnike-3990c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828994179758:android:b1426a492222e44600933f",
+        "android_client_info": {
+          "package_name": "com.shopnike.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIYbYyA1ZVfQbsBtoIN8ibzQ2LLc_NfVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828994179758:android:1d865325d60602d000933f",
+        "android_client_info": {
+          "package_name": "com.shopnk.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIYbYyA1ZVfQbsBtoIN8ibzQ2LLc_NfVI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
