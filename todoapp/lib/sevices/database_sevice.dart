@@ -1,6 +1,5 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite/sqlite_api.dart';
 import 'package:todoapp/models/task_model.dart';
 
 class DatabaseService {
@@ -16,7 +15,7 @@ class DatabaseService {
   static final DatabaseService instance = DatabaseService._constructor();
   DatabaseService._constructor();
 
-  //INITIALIZE DATABASE
+  //CHECK DATABASE
   Future<Database> get database async {
     if (_db != null) {
       return _db!;
@@ -116,7 +115,7 @@ class DatabaseService {
   void updateTask(int id, int status) async {
     final db = await database;
     await db.update(
-      _taskTableName,
+      _taskTableName,   
       {
         _taskStatusColumnName: status,
       },
