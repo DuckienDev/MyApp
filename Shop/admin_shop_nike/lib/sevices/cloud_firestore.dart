@@ -1,8 +1,40 @@
+import 'package:admin_shop_nike/models/orders_information.dart';
 import 'package:admin_shop_nike/models/shoes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CloudFirestore {
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+  // GET ORDER FROM FIRESTORE
+  Future<List<OdersInformation>> getAllOrders() async {
+    List<OdersInformation> allOrders = [];
+    try {
+      QuerySnapshot<Map<String, dynamic>> ordersSnapshot =
+          await firebaseFirestore.collectionGroup('myOders').get();
+
+      for (var orderDoc in ordersSnapshot.docs) {
+        final data = orderDoc.data();
+        OdersInformation order = OdersInformation(
+          id: orderDoc.id,
+          itemList: List<Map<String, dynamic>>.from(data['item'] ?? []),
+          shippingCostn: data['shippingCostn'] ?? 20,
+          price: data['price'] ?? 0,
+          totalAmount: data['totalAmount'] ?? 0,
+          orderStatus: data['orderStatus'] ?? 'unknown',
+          nameUser: data['nameUser'] ?? 'Unknown',
+          phoneNumber: data['phoneNumber'] ?? 'No phone number',
+          addRess: data['addRess'] ?? 'No address',
+        );
+        allOrders.add(order);
+      }
+
+      return allOrders;
+    } catch (e) {
+      print("Error fetching all orders: $e");
+      return [];
+    }
+  }
+
   //ADD FIRESTORE
   Future<void> addShoe(Shoe shoes) async {
     try {

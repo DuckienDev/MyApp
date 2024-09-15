@@ -1,4 +1,5 @@
 import 'package:admin_shop_nike/pages/add_products.dart';
+import 'package:admin_shop_nike/pages/order_page.dart';
 import 'package:admin_shop_nike/pages/read_products.dart';
 import 'package:admin_shop_nike/widgets/my_button.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                         builder: (context) => const AddProducts()));
               },
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             MyButton(
               text: 'ALL PRODUCTS',
               onTap: () {
@@ -50,7 +51,14 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             const SizedBox(height: 10),
-            MyButton(text: 'ORDERS', onTap: () {}),
+            MyButton(
+                text: 'ORDERS',
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const WalletPage()));
+                }),
             const SizedBox(height: 10),
             MyButton(text: 'SUPPORT', onTap: () {}),
           ],
