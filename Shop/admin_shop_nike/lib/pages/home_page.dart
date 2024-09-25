@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const WalletPage()));
+                          builder: (context) => const OrderPage()));
                 }),
             const SizedBox(height: 10),
             MyButton(text: 'SUPPORT', onTap: () {}),

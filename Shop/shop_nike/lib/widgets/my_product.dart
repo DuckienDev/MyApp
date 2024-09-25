@@ -16,7 +16,7 @@ class MyProducts extends StatelessWidget {
       children: [
         //IMAGE PRODUCT
         SizedBox(
-          height: 130,
+          height: 120,
           width: 500,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),

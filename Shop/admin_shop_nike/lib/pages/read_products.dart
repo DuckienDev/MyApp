@@ -18,7 +18,7 @@ class _ReadProductsState extends State<ReadProducts> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'ADD PRODUCTS',
+          'ALL PRODUCTS',
           style: TextStyle(
             fontSize: 20,
             color: Colors.white,

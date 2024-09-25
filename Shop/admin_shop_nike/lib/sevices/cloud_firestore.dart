@@ -35,6 +35,27 @@ class CloudFirestore {
     }
   }
 
+  //UPDATE STATE ORDER FS
+  Future<void> updateStateOrder(String id, String state) async {
+    try {
+      QuerySnapshot querySnapshot = await firebaseFirestore
+          .collectionGroup('myOders')
+          .where('id', isEqualTo: id)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        for (var doc in querySnapshot.docs) {
+          await doc.reference.update({'orderStatus': state});
+        }
+        print('Order status updated successfully!');
+      } else {
+        print('No order found with id: $id');
+      }
+    } catch (e) {
+      print('Error updating order status: $e');
+    }
+  }
+
   //ADD FIRESTORE
   Future<void> addShoe(Shoe shoes) async {
     try {

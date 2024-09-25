@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_nike/models/oders_information.dart';
@@ -18,10 +19,10 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
-    AuthSevices _auth = AuthSevices();
+    AuthSevices auth = AuthSevices();
     final cart = context.watch<Cart>();
 
-    CloudFirestoreService _firebase = CloudFirestoreService();
+    CloudFirestoreService firebase = CloudFirestoreService();
 
     //CHECK DELETE TASK
     Future<dynamic> checkDeleteTask(BuildContext context, String id) {
@@ -61,9 +62,10 @@ class _CartPageState extends State<CartPage> {
     // PAYMENT PROCESSING FUNCTION
     void handlePayment(Cart cart) async {
       Profile? userProfile =
-          await _firebase.getUser(_auth.currentUser().toString());
+          await firebase.getUser(auth.currentUser().toString());
+      var orderDocRef = FirebaseFirestore.instance.collection('myOders').doc();
       try {
-        String orderId = "${_auth.currentUser()}${cart.items.keys}";
+        String orderId = orderDocRef.id;
         List<Map<String, dynamic>> items = cart.itemList;
         int shippingCost = 20;
         int price = cart.totalAmount;
@@ -85,7 +87,7 @@ class _CartPageState extends State<CartPage> {
           print('No items in cart to process.');
           return;
         } else {
-          await _firebase.addMyOrder(newOrder, _auth.currentUser().toString());
+          await firebase.addMyOrder(newOrder, auth.currentUser().toString());
         }
       } catch (e) {
         print('Error : ADD ODER');

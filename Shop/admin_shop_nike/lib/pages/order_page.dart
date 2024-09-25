@@ -1,15 +1,17 @@
 import 'package:admin_shop_nike/models/orders_information.dart';
 import 'package:admin_shop_nike/sevices/cloud_firestore.dart';
+import 'package:admin_shop_nike/widgets/my_button.dart';
+import 'package:admin_shop_nike/widgets/my_text_field.dart';
 import 'package:flutter/material.dart';
 
-class WalletPage extends StatefulWidget {
-  const WalletPage({super.key});
+class OrderPage extends StatefulWidget {
+  const OrderPage({super.key});
 
   @override
-  State<WalletPage> createState() => _WalletPageState();
+  State<OrderPage> createState() => _OrderPageState();
 }
 
-class _WalletPageState extends State<WalletPage> {
+class _OrderPageState extends State<OrderPage> {
   List<OdersInformation> _orders = [];
   bool _isLoading = true;
   final CloudFirestore _firebase = CloudFirestore();
@@ -182,7 +184,62 @@ class _WalletPageState extends State<WalletPage> {
                             );
                           },
                         ),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              MyButton(
+                                  text: 'UPDATE STATE',
+                                  onTap: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        TextEditingController stateController =
+                                            TextEditingController();
 
+                                        return AlertDialog(
+                                          title:
+                                              const Text('UPDATE STATE ORDER'),
+                                          content: MyTextField(
+                                            controller: stateController,
+                                            hintText: 'State',
+                                          ),
+                                          actions: [
+                                            MyButton(
+                                              text: 'Update',
+                                              onTap: () async {
+                                                String newState =
+                                                    stateController.text;
+                                                try {
+                                                  await _firebase
+                                                      .updateStateOrder(
+                                                          order.id, newState);
+                                                  Navigator.pop(context);
+
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(const SnackBar(
+                                                          content: Text(
+                                                              'Update state succfully')));
+                                                  setState(() {});
+                                                } catch (e) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(SnackBar(
+                                                          content: Text(
+                                                              'Error updating order: $e')));
+                                                }
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  }),
+                              MyButton(text: 'DELETE', onTap: () {})
+                            ],
+                          ),
+                        ),
                         const Padding(
                           padding: EdgeInsets.all(15),
                           child: Divider(

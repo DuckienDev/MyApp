@@ -92,7 +92,8 @@ class CloudFirestoreService {
           .collection('user')
           .doc(uid)
           .collection('myOders')
-          .add(order.toMap());
+          .doc(order.id)
+          .set(order.toMap());
       print('Order added successfully!');
     } catch (e) {
       print('Error adding order: $e');
