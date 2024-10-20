@@ -20,9 +20,9 @@ class InformationProduct extends StatefulWidget {
 
 class _InformationProductState extends State<InformationProduct> {
   late List<String> ListImg = [
-    '${widget.shoe.imgShoes.img3}',
-    '${widget.shoe.imgShoes.img1}',
-    '${widget.shoe.imgShoes.img2}',
+    (widget.shoe.imgShoes.img3),
+    (widget.shoe.imgShoes.img1),
+    (widget.shoe.imgShoes.img2),
   ];
   final ValueNotifier<int> activeIndexInf = ValueNotifier<int>(0);
 

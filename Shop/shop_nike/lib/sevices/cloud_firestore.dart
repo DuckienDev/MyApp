@@ -6,6 +6,24 @@ import 'package:shop_nike/models/shoes.dart';
 class CloudFirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  //SEARCH SHOES FROM CLOUD FIRESTORE
+  Future<List<Shoe>> searchByName(String searchItem) async {
+    try {
+      QuerySnapshot snapshot = await _firestore
+          .collection('shoes')
+          .where('names', isGreaterThanOrEqualTo: searchItem)
+          .where('names', isLessThanOrEqualTo: '$searchItem\uf8ff')
+          .get();
+      List<Shoe> _dataSearch = snapshot.docs.map((doc) {
+        return Shoe.fromMap(doc.id, doc.data() as Map<String, dynamic>);
+      }).toList();
+      return _dataSearch;
+    } catch (e) {
+      print('Error search!');
+    }
+    return [];
+  }
+
   //GET DATA SHOE FROM CLOUD FIRESTORE
   Future<List<Shoe>> getShoes() async {
     try {

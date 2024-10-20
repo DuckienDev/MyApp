@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_nike/models/shoes.dart';
 import 'package:shop_nike/pages/information_product.dart';
+import 'package:shop_nike/pages/search_page.dart';
 import 'package:shop_nike/sevices/cloud_firestore.dart';
 import 'package:shop_nike/widgets/my_product.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -37,7 +38,10 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SearchPage()));
+            },
             icon: Icon(
               Icons.search,
               color: Theme.of(context).colorScheme.primary,
@@ -58,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             Center(
                 child: Text(
               'Error: ${snapshot.error}',
-              style: TextStyle(fontSize: 17, color: Colors.black),
+              style: const TextStyle(fontSize: 17, color: Colors.black),
             ));
 
             ///NO PRODUCT
@@ -157,7 +161,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       const Center(
                         child: Text(
-                          'Meet the latest collection of retro running inspieds shoes.',
+                          'Meet the latest collection of retro running inspieds.',
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.black,
@@ -191,6 +195,7 @@ class _HomePageState extends State<HomePage> {
                     onPageChanged: (index, reason) {
                       activeIndex.value = index;
                     },
+                    
                   ),
                   items: imgList
                       .map((e) => Container(
