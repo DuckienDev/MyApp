@@ -19,6 +19,9 @@ class InformationProduct extends StatefulWidget {
 }
 
 class _InformationProductState extends State<InformationProduct> {
+  final List<int> shoeSizes = [38, 39, 40, 41, 42, 43, 44];
+  int selectedSize = 0;
+
   late List<String> ListImg = [
     (widget.shoe.imgShoes.img3),
     (widget.shoe.imgShoes.img1),
@@ -50,17 +53,83 @@ class _InformationProductState extends State<InformationProduct> {
             const SizedBox(height: 10),
             //INFORMATION PRODUCT
             MyIFMProduct(widget: widget),
+            //SIZE
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'SELECT SIZE ',
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    height: 140,
+                    child: GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 5,
+                        crossAxisSpacing: 20.0,
+                        mainAxisSpacing: 20.0,
+                      ),
+                      itemCount: shoeSizes.length,
+                      itemBuilder: (context, index) {
+                        int size = shoeSizes[index];
+                        bool isSelected = selectedSize == size;
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedSize = size;
+                            });
+                          },
+                          child: SizedBox(
+                            height: 10,
+                            width: 10,
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: isSelected
+                                    ? Colors.black
+                                    : Colors.grey[300],
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(
+                                  color:
+                                      isSelected ? Colors.black : Colors.grey,
+                                  width: 2.0,
+                                ),
+                              ),
+                              child: Text(
+                                size.toString(),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color:
+                                      isSelected ? Colors.white : Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+
             //ADD TO CART
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
-                String selectedSize = 'EU 40';
                 context.read<Cart>().addItem(
                       widget.shoe.id,
                       widget.shoe.names,
                       widget.shoe.imgShoes.img1,
                       widget.shoe.price,
-                      selectedSize,
+                      selectedSize.toString(),
                       DateTime.now().toString(),
                     );
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -69,7 +138,7 @@ class _InformationProductState extends State<InformationProduct> {
               },
               child: MyButton(name: 'Add To Cart'),
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 70),
           ],
         ),
       ),

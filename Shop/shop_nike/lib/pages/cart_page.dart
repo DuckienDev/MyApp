@@ -109,7 +109,10 @@ class _CartPageState extends State<CartPage> {
           const SizedBox(height: 10),
           cart.items.isEmpty
               ? const Center(
-                  child: Text('There are no products!'),
+                  child: Text(
+                    'There are no products!',
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
                 )
               : Expanded(
                   child: ListView.builder(

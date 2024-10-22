@@ -34,6 +34,7 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: pages[_currentTabIndex],
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(top: 10.0),

@@ -1,8 +1,8 @@
 import 'package:provider/provider.dart';
 import 'package:shop_nike/sevices/auth_gate.dart';
 import 'package:shop_nike/sevices/provider.dart';
+import 'package:shop_nike/themes/dark_mode.dart';
 import 'sevices/firebase_options.dart';
-import 'package:shop_nike/themes/light_mode.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const AuthGate(),
-      theme: lightMode,
+      theme: darkMode,
     );
   }
 }

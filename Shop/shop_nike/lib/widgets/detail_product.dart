@@ -40,13 +40,8 @@ class MyIFMProduct extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
-          //SIZE
-          Text(
-            'SIZE : ${widget.shoe.sizeds}',
-            style: Theme.of(context).textTheme.displaySmall,
-          ),
           const SizedBox(height: 20),
+
           //Share
           Container(
             width: 80,

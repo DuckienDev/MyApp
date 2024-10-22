@@ -55,8 +55,15 @@ class _SignUpState extends State<SignUp> {
       );
       //CREATE USER FIRESTORE
       await _firestore.collection('user').doc(profile.id).set(profile.toMap());
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Sign Up successfully.")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Sign Up successfully.",
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.black,
+        ),
+      );
       Navigator.pop(context);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const BottomNav()));
@@ -64,7 +71,12 @@ class _SignUpState extends State<SignUp> {
     } on FirebaseAuthException {
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Registration failed."),
+        content: Text(
+          "Registration failed.",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         backgroundColor: Color.fromARGB(255, 234, 98, 88),
       ));
     }

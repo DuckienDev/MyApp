@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_nike/models/shoes.dart';
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     //UI
     return Scaffold(
       //APP BAR
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      // backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         title: SizedBox(
           width: 50,
@@ -37,15 +38,17 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SearchPage()));
-            },
-            icon: Icon(
-              Icons.search,
-              color: Theme.of(context).colorScheme.primary,
+          OpenContainer(
+            transitionDuration: const Duration(seconds: 1),
+            closedBuilder: (context, openContainer) => Container(
+              padding: const EdgeInsets.all(10),
+              color: Colors.black,
+              child: Icon(
+                Icons.search,
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
+            openBuilder: (context, openContainer) => const SearchPage(),
           ),
         ],
       ),
@@ -195,7 +198,6 @@ class _HomePageState extends State<HomePage> {
                     onPageChanged: (index, reason) {
                       activeIndex.value = index;
                     },
-                    
                   ),
                   items: imgList
                       .map((e) => Container(
@@ -251,17 +253,25 @@ class _HomePageState extends State<HomePage> {
                   itemCount: shoesList.length,
                   itemBuilder: (context, index) {
                     Shoe shoe = shoesList[index];
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                InformationProduct(shoe: shoe),
-                          ),
-                        );
-                      },
-                      child: MyProducts(shoe: shoe),
+                    return
+                        // InkWell(
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //         builder: (context) =>
+                        //             InformationProduct(shoe: shoe),
+                        //       ),
+                        //     );
+                        //   },
+                        //   child: MyProducts(shoe: shoe),
+                        // );
+                        OpenContainer(
+                      transitionDuration: Duration(seconds: 1),
+                      closedBuilder: (context, openContainer) =>
+                          MyProducts(shoe: shoe),
+                      openBuilder: (context, openContainer) =>
+                          InformationProduct(shoe: shoe),
                     );
                   },
                 ),

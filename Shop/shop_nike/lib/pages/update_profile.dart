@@ -17,33 +17,32 @@ class UpdateProfile extends StatefulWidget {
 class _UpdateProfileState extends State<UpdateProfile> {
   @override
   Widget build(BuildContext context) {
-    final CloudFirestoreService _firestore = CloudFirestoreService();
+    final CloudFirestoreService firestore = CloudFirestoreService();
 
-    final TextEditingController _nameController = TextEditingController();
-    final TextEditingController _dateOfbirthController =
-        TextEditingController();
-    final TextEditingController _phoneController = TextEditingController();
-    final TextEditingController _addRessController = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController dateOfbirthController = TextEditingController();
+    final TextEditingController phoneController = TextEditingController();
+    final TextEditingController addRessController = TextEditingController();
     //UPDATE USER INFORMATION
     userUpdate() async {
-      if (_nameController.text.isEmpty ||
-          _addRessController.text.isEmpty ||
-          _phoneController.text.isEmpty ||
-          _dateOfbirthController.text.isEmpty) {
+      if (nameController.text.isEmpty ||
+          addRessController.text.isEmpty ||
+          phoneController.text.isEmpty ||
+          dateOfbirthController.text.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Please fill in all information.")),
         );
         return;
       } else {
         try {
-          await _firestore.userUpDate(
+          await firestore.userUpDate(
             Profile(
               id: widget._profile!.id,
-              name: _nameController.text,
-              dateOfBirth: _dateOfbirthController.text,
-              phoneNumber: _phoneController.text,
+              name: nameController.text,
+              dateOfBirth: dateOfbirthController.text,
+              phoneNumber: phoneController.text,
               email: widget._profile!.email,
-              addRess: _addRessController.text,
+              addRess: addRessController.text,
             ),
           );
           ScaffoldMessenger.of(context).showSnackBar(
@@ -73,26 +72,27 @@ class _UpdateProfileState extends State<UpdateProfile> {
             child: Center(
               child: Text(
                 'Please fill in all information !',
+                style: TextStyle(fontSize: 14, color: Colors.black),
               ),
             ),
           ),
           MyTextField(
-            controller: _nameController,
+            controller: nameController,
             hintText: 'Full Name',
             obscureText: false,
           ),
           MyTextField(
-            controller: _dateOfbirthController,
+            controller: dateOfbirthController,
             hintText: 'Date Of Brith',
             obscureText: false,
           ),
           MyTextField(
-            controller: _phoneController,
+            controller: phoneController,
             hintText: 'Phone Number ',
             obscureText: false,
           ),
           MyTextField(
-            controller: _addRessController,
+            controller: addRessController,
             hintText: 'Add Ress',
             obscureText: false,
           ),

@@ -36,9 +36,10 @@ class MyTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           border: InputBorder.none,
-          hintText: hintText,
-          hintStyle: Theme.of(context).textTheme.bodyMedium,
+          hintText: " ${hintText}",
+          hintStyle: Theme.of(context).textTheme.displaySmall,
         ),
+        style: const TextStyle(fontSize: 14, color: Colors.black),
       ),
     );
   }

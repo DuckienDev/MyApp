@@ -13,8 +13,8 @@ class WalletPage extends StatefulWidget {
 class _WalletPageState extends State<WalletPage> {
   List<OdersInformation> _orders = [];
   bool _isLoading = true;
-  CloudFirestoreService _firebase = CloudFirestoreService();
-  AuthSevices _auth = AuthSevices();
+  final CloudFirestoreService _firebase = CloudFirestoreService();
+  final AuthSevices _auth = AuthSevices();
 
   @override
   void initState() {
@@ -57,7 +57,12 @@ class _WalletPageState extends State<WalletPage> {
             )
           : _orders.isEmpty
               //ODER NOT DATA
-              ? const Center(child: Text("No orders found"))
+              ? const Center(
+                  child: Text(
+                    "No orders found",
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
+                )
               //RETURN ODER
               : ListView.builder(
                   itemCount: _orders.length,
@@ -71,7 +76,9 @@ class _WalletPageState extends State<WalletPage> {
                           child: Text(
                             'ID : ${order.id}',
                             style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w800),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800,
+                                color: Colors.black),
                           ),
                         ),
                         const SizedBox(height: 15),
@@ -93,9 +100,21 @@ class _WalletPageState extends State<WalletPage> {
                                         .displayLarge,
                                   ),
                                 ),
-                                Text('Name : ${order.nameUser}'),
-                                Text('Phone : ${order.phoneNumber}'),
-                                Text('Add Ress : ${order.addRess}'),
+                                Text(
+                                  'Name : ${order.nameUser}',
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                ),
+                                Text(
+                                  'Phone : ${order.phoneNumber}',
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                ),
+                                Text(
+                                  'Add Ress : ${order.addRess}',
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                ),
                               ],
                             ),
                             Container(
@@ -117,12 +136,22 @@ class _WalletPageState extends State<WalletPage> {
                                   ),
                                 ),
                                 Text(
-                                    'Shipping Costn : ${order.shippingCostn} USD'),
-                                Text('Pre-Product : ${order.price} USD'),
-                                Text('Total Payment : ${order.totalAmount} USD',
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w700)),
+                                  'Shipping Costn : ${order.shippingCostn} USD',
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.grey),
+                                ),
+                                Text(
+                                  'Pre-Product : ${order.price} USD',
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.grey),
+                                ),
+                                Text(
+                                  'Total Payment : ${order.totalAmount} USD',
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black),
+                                ),
                                 Row(
                                   children: [
                                     const Text('Status :',

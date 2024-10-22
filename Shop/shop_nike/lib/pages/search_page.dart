@@ -63,8 +63,9 @@ class _SearchPageState extends State<SearchPage> {
                 ),
                 border: InputBorder.none,
                 hintText: 'Search...',
-                hintStyle: Theme.of(context).textTheme.bodyMedium,
+                hintStyle: Theme.of(context).textTheme.displayMedium,
               ),
+              style: const TextStyle(color: Colors.black),
             ),
           ),
           Expanded(
@@ -84,8 +85,16 @@ class _SearchPageState extends State<SearchPage> {
                             ),
                           ),
                         ),
-                        title: Text(shoe.names),
-                        subtitle: Text('${shoe.price} USD'),
+                        title: Text(shoe.names,
+                            style: const TextStyle(
+                              color: Colors.black,
+                            )),
+                        subtitle: Text(
+                          '${shoe.price} USD',
+                          style: const TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
                         onTap: () {
                           Navigator.push(
                             context,
@@ -101,7 +110,7 @@ class _SearchPageState extends State<SearchPage> {
                 : const Center(
                     child: Text(
                       'Please enter keywords to search.',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                   ),
           ),

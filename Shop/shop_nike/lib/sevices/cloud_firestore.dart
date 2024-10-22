@@ -14,10 +14,10 @@ class CloudFirestoreService {
           .where('names', isGreaterThanOrEqualTo: searchItem)
           .where('names', isLessThanOrEqualTo: '$searchItem\uf8ff')
           .get();
-      List<Shoe> _dataSearch = snapshot.docs.map((doc) {
+      List<Shoe> dataSearch = snapshot.docs.map((doc) {
         return Shoe.fromMap(doc.id, doc.data() as Map<String, dynamic>);
       }).toList();
-      return _dataSearch;
+      return dataSearch;
     } catch (e) {
       print('Error search!');
     }
