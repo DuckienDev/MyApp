@@ -19,7 +19,7 @@ class InformationProduct extends StatefulWidget {
 }
 
 class _InformationProductState extends State<InformationProduct> {
-  final List<int> shoeSizes = [38, 39, 40, 41, 42, 43, 44];
+  final List<int> shoeSizes = [38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48];
   int selectedSize = 0;
 
   late List<String> ListImg = [
@@ -60,8 +60,8 @@ class _InformationProductState extends State<InformationProduct> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'SELECT SIZE ',
-                    style: Theme.of(context).textTheme.displayMedium,
+                    'SELECT SIZE :',
+                    style: Theme.of(context).textTheme.displayLarge,
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
@@ -101,7 +101,7 @@ class _InformationProductState extends State<InformationProduct> {
                                 ),
                               ),
                               child: Text(
-                                size.toString(),
+                                "EU $size",
                                 style: TextStyle(
                                   fontSize: 14,
                                   color:
@@ -118,7 +118,6 @@ class _InformationProductState extends State<InformationProduct> {
                 ],
               ),
             ),
-
 
             //ADD TO CART
             const SizedBox(height: 10),

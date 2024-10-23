@@ -1,7 +1,9 @@
 import 'package:animations/animations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shop_nike/models/shoes.dart';
+import 'package:shop_nike/navigators/event_bar.dart';
 import 'package:shop_nike/pages/information_product.dart';
 import 'package:shop_nike/pages/search_page.dart';
 import 'package:shop_nike/sevices/cloud_firestore.dart';
@@ -30,7 +32,6 @@ class _HomePageState extends State<HomePage> {
     //UI
     return Scaffold(
       //APP BAR
-      // backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         title: SizedBox(
           width: 50,
@@ -39,7 +40,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [
           OpenContainer(
-            transitionDuration: const Duration(seconds: 1),
+            transitionDuration: const Duration(milliseconds: 500),
             closedBuilder: (context, openContainer) => Container(
               padding: const EdgeInsets.all(10),
               color: Colors.black,
@@ -58,7 +59,12 @@ class _HomePageState extends State<HomePage> {
         builder: (context, snapshot) {
           ///LOADING
           if (snapshot.connectionState == ConnectionState.waiting) {
-            const Center(child: CircularProgressIndicator(color: Colors.black));
+            Center(
+              child: LoadingAnimationWidget.dotsTriangle(
+                color: Colors.black,
+                size: 40,
+              ),
+            );
 
             ///ERROR
           } else if (snapshot.hasError) {
@@ -82,61 +88,12 @@ class _HomePageState extends State<HomePage> {
             return ListView(
               children: [
                 const SizedBox(height: 5),
-                //CATERGORY
-                SizedBox(
-                  height: 50,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'New & Future',
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Men',
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Women',
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Kids',
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Sale',
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Customise',
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                //EVENT BAR
+                const EvenBarNavigator(),
                 const SizedBox(height: 5),
                 //EVENNT
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     children: [
                       SizedBox(
@@ -253,21 +210,8 @@ class _HomePageState extends State<HomePage> {
                   itemCount: shoesList.length,
                   itemBuilder: (context, index) {
                     Shoe shoe = shoesList[index];
-                    return
-                        // InkWell(
-                        //   onTap: () {
-                        //     Navigator.push(
-                        //       context,
-                        //       MaterialPageRoute(
-                        //         builder: (context) =>
-                        //             InformationProduct(shoe: shoe),
-                        //       ),
-                        //     );
-                        //   },
-                        //   child: MyProducts(shoe: shoe),
-                        // );
-                        OpenContainer(
-                      transitionDuration: Duration(seconds: 1),
+                    return OpenContainer(
+                      transitionDuration: const Duration(milliseconds: 500),
                       closedBuilder: (context, openContainer) =>
                           MyProducts(shoe: shoe),
                       openBuilder: (context, openContainer) =>
@@ -278,8 +222,12 @@ class _HomePageState extends State<HomePage> {
               ],
             );
           }
-          return const Center(
-              child: CircularProgressIndicator(color: Colors.black));
+          return Center(
+            child: LoadingAnimationWidget.dotsTriangle(
+              color: Colors.black,
+              size: 40,
+            ),
+          );
         },
       ),
     );

@@ -177,7 +177,9 @@ class _CartPageState extends State<CartPage> {
                     );
                     if (isConfirmed == true) {
                       handlePayment(cart);
-                      setState(() {});
+                      setState(() {
+                        context.read<Cart>().clearCart();
+                      });
                     }
                   },
                   child: MyButton(name: 'PAY'),

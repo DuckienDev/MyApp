@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_nike/pages/bottomnav.dart';
+import 'package:shop_nike/navigators/bottomnav.dart';
 import 'package:shop_nike/pages/welcom_page.dart';
 
 class AuthGate extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shop_nike/models/profile.dart';
 import 'package:shop_nike/pages/setting_page.dart';
 import 'package:shop_nike/sevices/auth_sevices.dart';
@@ -43,7 +44,12 @@ class _ProfileUserState extends State<ProfileUser> {
             _firestore.collection('user').doc(_auth.currentUser()).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: LoadingAnimationWidget.dotsTriangle(
+                color: Colors.black,
+                size: 40,
+              ),
+            );
           }
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');

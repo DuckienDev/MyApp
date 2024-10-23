@@ -62,7 +62,7 @@ class _SearchPageState extends State<SearchPage> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 border: InputBorder.none,
-                hintText: 'Search...',
+                hintText: ' Search...',
                 hintStyle: Theme.of(context).textTheme.displayMedium,
               ),
               style: const TextStyle(color: Colors.black),

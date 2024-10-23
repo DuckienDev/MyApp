@@ -13,19 +13,19 @@ class MyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10),
-      height: 70,
+      height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: Colors.black,
       ),
-      padding: const EdgeInsets.all(25),
+      padding: const EdgeInsets.all(20),
       child: Center(
         child: Text(
           name,
           style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+            fontSize: 15,
+            fontWeight: FontWeight.w700,
             color: Colors.white,
           ),
         ),

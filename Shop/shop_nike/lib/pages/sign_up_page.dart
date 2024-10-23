@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shop_nike/models/profile.dart';
-import 'package:shop_nike/pages/bottomnav.dart';
+import 'package:shop_nike/navigators/bottomnav.dart';
 import 'package:shop_nike/pages/sign_in_page.dart';
 import 'package:shop_nike/widgets/my_button.dart';
 import 'package:shop_nike/widgets/my_text_field.dart';
@@ -35,8 +36,11 @@ class _SignUpState extends State<SignUp> {
         context: context,
         builder: (context) {
           return Center(
-              child: CircularProgressIndicator(
-                  color: Theme.of(context).colorScheme.secondary));
+              child: LoadingAnimationWidget.dotsTriangle(
+                color: Colors.black,
+                size: 40,
+              ),
+            );
         });
     try {
       //SIGN UP
