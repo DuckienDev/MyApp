@@ -165,7 +165,11 @@ class _CartPageState extends State<CartPage> {
             children: [
               Expanded(
                 flex: 2,
-                child: MyButton(name: 'Total: ${cart.totalAmount} USD'),
+                child: MyButton(
+                  name: 'Total: ${cart.totalAmount} USD',
+                  colorButton: Colors.white,
+                  colorText: Colors.black,
+                ),
               ),
               Expanded(
                 flex: 2,

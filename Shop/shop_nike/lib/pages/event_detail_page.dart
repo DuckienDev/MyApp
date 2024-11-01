@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:shop_nike/models/event.dart';
+import 'package:typewritertext/typewritertext.dart';
 
+// ignore: must_be_immutable
 class EventDetailPage extends StatefulWidget {
   Event event;
 
@@ -41,12 +44,18 @@ class _EventDetailPageState extends State<EventDetailPage> {
               ),
             ),
             //TITLE EVENT
-            Text(
-              widget.event.title,
-              style: const TextStyle(
-                fontSize: 30,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
+            Shimmer.fromColors(
+              baseColor: Colors.red,
+              highlightColor: const Color.fromARGB(255, 253, 248, 209),
+              child: Text(
+                widget.event.title,
+                style: const TextStyle(
+                  fontSize: 25,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'CollegiateFLF',
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
             const SizedBox(height: 10),
@@ -63,8 +72,9 @@ class _EventDetailPageState extends State<EventDetailPage> {
             //DECRIPTION EVENT
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Text(
-                "      ${widget.event.detailEvent}",
+              child: TypeWriter.text(
+                "${widget.event.detailEvent}",
+                duration: const Duration(milliseconds: 10),
                 style: const TextStyle(
                   fontSize: 14,
                   color: Color.fromARGB(255, 50, 50, 50),

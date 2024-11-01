@@ -6,7 +6,10 @@ import 'package:shop_nike/sevices/cloud_firestore.dart';
 import 'package:vertical_card_pager/vertical_card_pager.dart';
 
 class NewEventPage extends StatefulWidget {
+  const NewEventPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _NewEventPageState createState() => _NewEventPageState();
 }
 
@@ -41,7 +44,7 @@ class _NewEventPageState extends State<NewEventPage> {
               images: events
                   .map((e) => ClipRRect(
                         borderRadius: BorderRadius.circular(20.0),
-                        child: Hero (
+                        child: Hero(
                           tag: e.title,
                           child: Image.network(
                             e.imgEvent,
@@ -52,7 +55,12 @@ class _NewEventPageState extends State<NewEventPage> {
                   .toList(),
               onPageChanged: (page) {},
               onSelectedItem: (index) {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> EventDetailPage(event: events[index])));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EventDetailPage(event: events[index]),
+                  ),
+                );
               },
             );
           }

@@ -90,23 +90,22 @@ class _InformationProductState extends State<InformationProduct> {
                             child: Container(
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
-                                color: isSelected
-                                    ? Colors.black
-                                    : Colors.grey[300],
+                                color: isSelected ? Colors.black : Colors.white,
                                 borderRadius: BorderRadius.circular(8.0),
                                 border: Border.all(
-                                  color:
-                                      isSelected ? Colors.black : Colors.grey,
-                                  width: 2.0,
+                                  color: isSelected
+                                      ? Colors.black
+                                      : const Color.fromARGB(255, 0, 0, 0),
+                                  width: 1.0,
                                 ),
                               ),
                               child: Text(
                                 "EU $size",
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   color:
                                       isSelected ? Colors.white : Colors.black,
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
                             ),
@@ -121,23 +120,36 @@ class _InformationProductState extends State<InformationProduct> {
 
             //ADD TO CART
             const SizedBox(height: 10),
+            MyButton(
+              name: 'By Now',
+              colorButton: Colors.white,
+              colorText: Colors.black,
+            ),
+
             GestureDetector(
               onTap: () {
-                context.read<Cart>().addItem(
-                      widget.shoe.id,
-                      widget.shoe.names,
-                      widget.shoe.imgShoes.img1,
-                      widget.shoe.price,
-                      selectedSize.toString(),
-                      DateTime.now().toString(),
-                    );
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    backgroundColor: Colors.black,
-                    content: Text("Add products successfully.")));
+                if (selectedSize != 0) {
+                  context.read<Cart>().addItem(
+                        widget.shoe.id,
+                        widget.shoe.names,
+                        widget.shoe.imgShoes.img1,
+                        widget.shoe.price,
+                        selectedSize.toString(),
+                        DateTime.now().toString(),
+                      );
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      backgroundColor: Colors.black,
+                      content: Text("Add products successfully.")));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      backgroundColor: Colors.black,
+                      content:
+                          Text("Please choose the appropriate shoe size !")));
+                }
               },
               child: MyButton(name: 'Add To Cart'),
             ),
-            const SizedBox(height: 70),
+            const SizedBox(height: 80),
           ],
         ),
       ),

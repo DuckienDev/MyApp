@@ -29,6 +29,7 @@ class MyProducts extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            
             //TITLE PRODUCT
             Text(
               shoe.brand,
