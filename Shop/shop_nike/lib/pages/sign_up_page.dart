@@ -1,12 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:shop_nike/models/profile.dart';
-import 'package:shop_nike/navigators/bottomnav.dart';
 import 'package:shop_nike/pages/sign_in_page.dart';
+import 'package:shop_nike/sevices/auth_sevices.dart';
 import 'package:shop_nike/widgets/my_button.dart';
 import 'package:shop_nike/widgets/my_text_field.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -16,76 +12,13 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  AuthSevices auth = AuthSevices();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
   final TextEditingController _RepwController = TextEditingController();
 
-  userSignUp() async {
-    //CHECK PW
-    if (_pwController.text != _RepwController.text) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Please check your password again."),
-        backgroundColor: Color.fromARGB(255, 234, 98, 88),
-      ));
-      return;
-    }
-    showDialog(
-        context: context,
-        builder: (context) {
-          return Center(
-              child: LoadingAnimationWidget.dotsTriangle(
-                color: Colors.black,
-                size: 40,
-              ),
-            );
-        });
-    try {
-      //SIGN UP
-      UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
-              email: _emailController.text.trim(),
-              password: _pwController.text.trim());
-
-      Profile profile = Profile(
-        id: userCredential.user?.uid ?? '',
-        name: 'No name',
-        dateOfBirth: 'dd/yy/mmmm',
-        phoneNumber: 'No Phone',
-        email: _emailController.text.trim(),
-        addRess: 'No Add Ress',
-      );
-      //CREATE USER FIRESTORE
-      await _firestore.collection('user').doc(profile.id).set(profile.toMap());
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            "Sign Up successfully.",
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.black,
-        ),
-      );
-      Navigator.pop(context);
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const BottomNav()));
-      //SIGN UP FAIL
-    } on FirebaseAuthException {
-      Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text(
-          "Registration failed.",
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Color.fromARGB(255, 234, 98, 88),
-      ));
-    }
-  }
-
+//UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +57,12 @@ class _SignUpState extends State<SignUp> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      userSignUp();
+                      auth.userSignUp(
+                        context,
+                        _emailController,
+                        _pwController,
+                        _RepwController,
+                      );
                     },
                     child: MyButton(name: 'Sign Up'),
                   ),

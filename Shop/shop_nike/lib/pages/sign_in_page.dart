@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:shop_nike/navigators/bottomnav.dart';
+import 'package:shop_nike/pages/forgot_pw_page.dart';
 import 'package:shop_nike/pages/sign_up_page.dart';
+import 'package:shop_nike/sevices/auth_sevices.dart';
 import 'package:shop_nike/widgets/my_button.dart';
 import 'package:shop_nike/widgets/my_text_field.dart';
 
@@ -14,54 +13,10 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  AuthSevices auth = AuthSevices();
+
   TextEditingController _emailController = TextEditingController();
   TextEditingController _pwController = TextEditingController();
-
-  userlogin() async {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return Center(
-            child: LoadingAnimationWidget.dotsTriangle(
-              color: Colors.black,
-              size: 40,
-            ),
-          );
-        });
-
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _pwController.text.trim());
-
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text(
-          "Sign in successfully.",
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.black,
-      ));
-      Navigator.pop(context);
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const BottomNav()));
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("User found for that email."),
-          backgroundColor: Color.fromARGB(255, 234, 98, 88),
-        ));
-      } else if (e.code == 'wrong- password') {
-        Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Wrong password."),
-            backgroundColor: Color.fromARGB(255, 234, 98, 88),
-          ),
-        );
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +53,12 @@ class _SignInState extends State<SignIn> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ForgotPwPage()));
+                        },
                         child: Text(
                           'Forgot password ?',
                           style: Theme.of(context).textTheme.displayMedium,
@@ -108,7 +68,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      userlogin();
+                      auth.userlogin(context, _emailController, _pwController);
                     },
                     child: MyButton(name: 'Sign In'),
                   ),

@@ -24,7 +24,7 @@ ThemeData darkMode = ThemeData(
     ),
     displaySmall: TextStyle(
       fontSize: 13,
-      color: Colors.black,
+      color: Color.fromARGB(255, 105, 105, 105),
       fontWeight: FontWeight.w600,
     ),
   ),

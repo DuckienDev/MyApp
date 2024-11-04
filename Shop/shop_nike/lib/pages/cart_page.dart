@@ -35,6 +35,15 @@ class _CartPageState extends State<CartPage> {
           ),
           actions: [
             IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.clear,
+                color: Colors.black,
+              ),
+            ),
+            IconButton(
               onPressed: () async {
                 context.read<Cart>().removeItem(id);
                 setState(() {});
@@ -43,15 +52,6 @@ class _CartPageState extends State<CartPage> {
               icon: const Icon(
                 Icons.check,
                 color: Colors.red,
-              ),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.clear,
-                color: Colors.black,
               ),
             ),
           ],
@@ -63,7 +63,17 @@ class _CartPageState extends State<CartPage> {
     void handlePayment(Cart cart) async {
       Profile? userProfile =
           await firebase.getUser(auth.currentUser().toString());
-      var orderDocRef = FirebaseFirestore.instance.collection('myOders').doc();
+      if (userProfile == null) {
+        print('User profile not found');
+        return;
+      }
+
+      var orderDocRef = FirebaseFirestore.instance
+          .collection('user')
+          .doc(auth.currentUser().toString())
+          .collection('myOders')
+          .doc();
+
       try {
         String orderId = orderDocRef.id;
         List<Map<String, dynamic>> items = cart.itemList;
@@ -72,6 +82,11 @@ class _CartPageState extends State<CartPage> {
         int totalAmount = price + shippingCost;
         String orderStatus = 'pending';
 
+        if (items.isEmpty) {
+          print('No items in cart to process.');
+          return;
+        }
+
         OdersInformation newOrder = OdersInformation(
           id: orderId,
           shippingCostn: shippingCost,
@@ -79,19 +94,29 @@ class _CartPageState extends State<CartPage> {
           totalAmount: totalAmount,
           orderStatus: orderStatus,
           itemList: items,
-          nameUser: userProfile!.name,
+          nameUser: userProfile.name,
           phoneNumber: userProfile.phoneNumber,
           addRess: userProfile.addRess,
         );
-        if (items.isEmpty) {
-          print('No items in cart to process.');
-          return;
-        } else {
-          await firebase.addMyOrder(newOrder, auth.currentUser().toString());
-        }
+
+        await firebase.addMyOrder(newOrder, auth.currentUser().toString());
+        // Thông báo thành công
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Order placed successfully!'),
+            backgroundColor: Colors.black,
+          ),
+        );
       } catch (e) {
-        print('Error : ADD ODER');
+        print('Error: ADD ORDER');
         print(e);
+        // Thông báo lỗi
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to place order: $e'),
+            backgroundColor: Colors.black,
+          ),
+        );
       }
     }
 
@@ -175,16 +200,20 @@ class _CartPageState extends State<CartPage> {
                 flex: 2,
                 child: GestureDetector(
                   onTap: () async {
+                    if (cart.items.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Your cart is empty!')),
+                      );
+                      return;
+                    }
                     bool? isConfirmed = await showDialog<bool>(
                       context: context,
                       builder: (context) => const ConfirmOder(),
                     );
                     if (isConfirmed == true) {
                       handlePayment(cart);
-                      setState(() {
-                        context.read<Cart>().clearCart();
-                      });
                     }
+                    return;
                   },
                   child: MyButton(name: 'PAY'),
                 ),

@@ -15,20 +15,20 @@ class ConfirmOder extends StatelessWidget {
       actions: [
         IconButton(
           onPressed: () {
-            Navigator.of(context).pop(true);
-          },
-          icon: const Icon(
-            Icons.check,
-            color: Colors.green,
-          ),
-        ),
-        IconButton(
-          onPressed: () {
             Navigator.of(context).pop(false);
           },
           icon: const Icon(
             Icons.clear,
             color: Colors.black,
+          ),
+        ),
+        IconButton(
+          onPressed: () {
+            Navigator.of(context).pop(true);
+          },
+          icon: const Icon(
+            Icons.check,
+            color: Colors.green,
           ),
         ),
       ],

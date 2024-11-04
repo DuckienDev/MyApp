@@ -43,6 +43,7 @@ class MyTextField extends StatelessWidget {
           ),
           border: InputBorder.none,
           hintText: " ${hintText}",
+  
           hintStyle: Theme.of(context).textTheme.displaySmall,
         ),
         style: const TextStyle(fontSize: 14, color: Colors.black),
