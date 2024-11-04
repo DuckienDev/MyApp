@@ -6,11 +6,15 @@ class MyTextField extends StatelessWidget {
   TextEditingController controller;
   String hintText;
   bool obscureText;
+  int maxLeng;
+  TextInputType keyboardType;
   MyTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
+    this.maxLeng = 50,
+    this.keyboardType = TextInputType.text,
   });
 
   @override
@@ -19,6 +23,8 @@ class MyTextField extends StatelessWidget {
       padding: const EdgeInsets.all(10.0),
       child: TextFormField(
         obscureText: obscureText,
+        maxLength: maxLeng,
+        keyboardType: keyboardType,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "Please enter $hintText!";

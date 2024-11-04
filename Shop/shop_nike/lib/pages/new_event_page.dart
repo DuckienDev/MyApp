@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:shop_nike/models/event.dart';
 import 'package:shop_nike/pages/event_detail_page.dart';
 import 'package:shop_nike/sevices/cloud_firestore.dart';
@@ -46,9 +47,30 @@ class _NewEventPageState extends State<NewEventPage> {
                         borderRadius: BorderRadius.circular(20.0),
                         child: Hero(
                           tag: e.title,
-                          child: Image.network(
-                            e.imgEvent,
-                            fit: BoxFit.cover,
+                          child: FutureBuilder(
+                            future: Future.delayed(
+                                const Duration(milliseconds: 500)),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return SizedBox(
+                                  child: Shimmer.fromColors(
+                                    baseColor: Colors.grey[300]!,
+                                    highlightColor: Colors.grey[100]!,
+                                    child: Container(
+                                      height: double.infinity,
+                                      width: double.infinity,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                return Image.network(
+                                  e.imgEvent,
+                                  fit: BoxFit.cover,
+                                );
+                              }
+                            },
                           ),
                         ),
                       ))

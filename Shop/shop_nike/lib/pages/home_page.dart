@@ -40,14 +40,26 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
         actions: [
+          //Button Search
           OpenContainer(
+            closedColor: Colors.black,
+            openColor: Colors.black,
+            closedShape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(100.0))),
             transitionDuration: const Duration(milliseconds: 500),
-            closedBuilder: (context, openContainer) => Container(
-              color: Colors.black,
-              padding: const EdgeInsets.all(10),
-              child: Icon(
-                Icons.search,
-                color: Theme.of(context).colorScheme.primary,
+            closedBuilder: (context, openContainer) => ClipOval(
+              child: Material(
+                color: Colors.black,
+                child: InkWell(
+                  onTap: openContainer,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Icon(
+                      Icons.search,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                ),
               ),
             ),
             openBuilder: (context, openContainer) => const SearchPage(),
@@ -174,12 +186,13 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     Shoe shoe = shoesList[index];
                     return OpenContainer(
-                      transitionDuration: const Duration(milliseconds: 500),
-                      closedBuilder: (context, openContainer) =>
-                          MyProducts(shoe: shoe),
-                      openBuilder: (context, openContainer) =>
-                          InformationProduct(shoe: shoe),
-                    );
+                        transitionDuration: const Duration(milliseconds: 500),
+                        closedBuilder: (context, openContainer) =>
+                            MyProducts(shoe: shoe),
+                        openBuilder: (context, openContainer) =>
+                            InformationProduct(shoe: shoe),
+                        closedShape: BeveledRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)));
                   },
                 ),
               ],

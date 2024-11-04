@@ -19,7 +19,7 @@ class InformationProduct extends StatefulWidget {
 }
 
 class _InformationProductState extends State<InformationProduct> {
-  final List<int> shoeSizes = [38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48];
+  final List<int> shoeSizes = [38, 39, 40, 41, 42, 43, 44, 45, 46, 47];
   int selectedSize = 0;
 
   late List<String> ListImg = [
@@ -65,7 +65,7 @@ class _InformationProductState extends State<InformationProduct> {
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
-                    height: 140,
+                    height: 170,
                     child: GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:

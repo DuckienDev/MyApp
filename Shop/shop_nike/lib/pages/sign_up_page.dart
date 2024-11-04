@@ -69,7 +69,7 @@ class _SignUpState extends State<SignUp> {
         ),
       );
       Navigator.pop(context);
-      Navigator.push(
+      Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const BottomNav()));
       //SIGN UP FAIL
     } on FirebaseAuthException {

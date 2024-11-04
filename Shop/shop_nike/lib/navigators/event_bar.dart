@@ -18,7 +18,7 @@ class EvenBarNavigator extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>  NewEventPage()));
+                      builder: (context) =>  const NewEventPage()));
             },
             child: Text(
               'New & Future',

@@ -22,11 +22,11 @@ class _SignInState extends State<SignIn> {
         context: context,
         builder: (context) {
           return Center(
-              child: LoadingAnimationWidget.dotsTriangle(
-                color: Colors.black,
-                size: 40,
-              ),
-            );
+            child: LoadingAnimationWidget.dotsTriangle(
+              color: Colors.black,
+              size: 40,
+            ),
+          );
         });
 
     try {
@@ -34,10 +34,15 @@ class _SignInState extends State<SignIn> {
           email: _emailController.text.trim(),
           password: _pwController.text.trim());
 
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Sign in successfully.")));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text(
+          "Sign in successfully.",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.black,
+      ));
       Navigator.pop(context);
-      Navigator.push(
+      Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const BottomNav()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

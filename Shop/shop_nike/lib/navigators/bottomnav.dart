@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shop_nike/pages/credit_cart_page.dart';
 import 'package:shop_nike/pages/home_page.dart';
 import 'package:shop_nike/pages/cart_page.dart';
 import 'package:shop_nike/pages/profile_page.dart';
-import 'package:shop_nike/pages/order_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class BottomNav extends StatefulWidget {
@@ -19,14 +19,14 @@ class _BottomNavState extends State<BottomNav> {
   late HomePage homePage;
   late ProfileUser profileUser;
   late CartPage oderPage;
-  late WalletPage walletPage;
+  late CreditCartPage walletPage;
 
   @override
   void initState() {
     homePage = const HomePage();
     profileUser = const ProfileUser();
     oderPage = const CartPage();
-    walletPage = const WalletPage();
+    walletPage = const CreditCartPage();
     pages = [homePage, oderPage, walletPage, profileUser];
     super.initState();
   }

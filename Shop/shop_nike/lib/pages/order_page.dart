@@ -4,14 +4,14 @@ import 'package:shop_nike/models/oders_information.dart';
 import 'package:shop_nike/sevices/auth_sevices.dart';
 import 'package:shop_nike/sevices/cloud_firestore.dart';
 
-class WalletPage extends StatefulWidget {
-  const WalletPage({super.key});
+class OderPage extends StatefulWidget {
+  const OderPage({super.key});
 
   @override
-  State<WalletPage> createState() => _WalletPageState();
+  State<OderPage> createState() => _OderPageState();
 }
 
-class _WalletPageState extends State<WalletPage> {
+class _OderPageState extends State<OderPage> {
   List<OdersInformation> _orders = [];
   bool _isLoading = true;
   final CloudFirestoreService _firebase = CloudFirestoreService();

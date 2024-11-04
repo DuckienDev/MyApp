@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_nike/models/profile.dart';
+import 'package:shop_nike/pages/order_page.dart';
 import 'package:shop_nike/pages/update_profile.dart';
 import 'package:shop_nike/sevices/auth_sevices.dart';
 import 'package:shop_nike/widgets/my_button.dart';
@@ -52,9 +53,36 @@ class MyProfile extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 90),
+        const SizedBox(height: 80),
         Column(
           children: [
+            Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const OderPage()));
+                    },
+                    child: MyButton(
+                      name: 'Transporting',
+                      colorButton: Colors.white,
+                      colorText: Colors.black,
+                    ),
+                  ),
+                ),
+                Expanded(
+                    flex: 2,
+                    child: MyButton(
+                      name: 'History',
+                      colorButton: Colors.white,
+                      colorText: Colors.black,
+                    )),
+              ],
+            ),
             ListTile(
               leading: Text(
                 'Full Name :',

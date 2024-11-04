@@ -5,7 +5,7 @@ ThemeData darkMode = ThemeData(
 //SET TEXT APP
   textTheme: const TextTheme(
     titleMedium: TextStyle(
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: FontWeight.w700,
       color: Colors.white,
     ),
