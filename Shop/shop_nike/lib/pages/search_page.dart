@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_nike/models/shoes.dart';
 import 'package:shop_nike/pages/information_product.dart';
-import 'package:shop_nike/sevices/cloud_firestore.dart';
+import 'package:shop_nike/sevices/firestore/cloud_firestore.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});

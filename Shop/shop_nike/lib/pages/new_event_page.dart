@@ -3,7 +3,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:shop_nike/models/event.dart';
 import 'package:shop_nike/pages/event_detail_page.dart';
-import 'package:shop_nike/sevices/cloud_firestore.dart';
+import 'package:shop_nike/sevices/firestore/cloud_firestore.dart';
 import 'package:vertical_card_pager/vertical_card_pager.dart';
 
 class NewEventPage extends StatefulWidget {

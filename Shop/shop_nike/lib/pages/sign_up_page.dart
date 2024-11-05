@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_nike/pages/sign_in_page.dart';
-import 'package:shop_nike/sevices/auth_sevices.dart';
+import 'package:shop_nike/sevices/auth/auth_sevices.dart';
 import 'package:shop_nike/widgets/my_button.dart';
 import 'package:shop_nike/widgets/my_text_field.dart';
 

@@ -3,7 +3,7 @@ import 'package:shop_nike/models/oders_information.dart';
 import 'package:shop_nike/models/profile.dart';
 import 'package:shop_nike/models/shoes.dart';
 
-import '../models/event.dart';
+import '../../models/event.dart';
 
 class CloudFirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

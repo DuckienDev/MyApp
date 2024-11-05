@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shop_nike/models/oders_information.dart';
-import 'package:shop_nike/sevices/auth_sevices.dart';
-import 'package:shop_nike/sevices/cloud_firestore.dart';
+import 'package:shop_nike/sevices/auth/auth_sevices.dart';
+import 'package:shop_nike/sevices/firestore/cloud_firestore.dart';
 
 class OderPage extends StatefulWidget {
   const OderPage({super.key});

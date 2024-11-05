@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_nike/models/profile.dart';
-import 'package:shop_nike/sevices/cloud_firestore.dart';
+import 'package:shop_nike/sevices/firestore/cloud_firestore.dart';
 import 'package:shop_nike/widgets/my_button.dart';
 import 'package:shop_nike/widgets/my_text_field.dart';
 

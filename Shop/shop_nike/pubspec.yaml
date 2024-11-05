@@ -26,18 +26,20 @@ dependencies:
   typewritertext: ^3.0.9
   shimmer: ^3.0.0
   u_credit_card: ^1.4.0
-  flutter_native_splash: ^2.4.2
+  # flutter_native_splash: ^2.4.2
+  flutter_stripe: ^11.2.0
+  dio: ^5.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-  flutter_launcher_icons: ^0.14.1
+#   flutter_launcher_icons: ^0.14.1
 
-flutter_icons:
-  android: true
-  ios: true
-  image_path: "assets/img/icon.png"
+# flutter_icons:
+#   android: true
+#   ios: true
+#   image_path: "assets/img/icon.png"
 
 flutter:
   uses-material-design: true

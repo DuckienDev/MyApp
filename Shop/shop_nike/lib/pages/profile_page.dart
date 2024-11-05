@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shop_nike/models/profile.dart';
 import 'package:shop_nike/pages/setting_page.dart';
-import 'package:shop_nike/sevices/auth_sevices.dart';
+import 'package:shop_nike/sevices/auth/auth_sevices.dart';
 import 'package:shop_nike/widgets/my_profile.dart';
 
 class ProfileUser extends StatefulWidget {

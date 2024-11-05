@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_nike/models/profile.dart';
 import 'package:shop_nike/pages/order_page.dart';
 import 'package:shop_nike/pages/update_profile.dart';
-import 'package:shop_nike/sevices/auth_sevices.dart';
+import 'package:shop_nike/sevices/auth/auth_sevices.dart';
 import 'package:shop_nike/widgets/my_button.dart';
 
 class MyProfile extends StatelessWidget {

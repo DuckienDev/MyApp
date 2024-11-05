@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_nike/models/oders_information.dart';
 import 'package:shop_nike/models/profile.dart';
-import 'package:shop_nike/sevices/auth_sevices.dart';
-import 'package:shop_nike/sevices/cloud_firestore.dart';
+import 'package:shop_nike/sevices/auth/auth_sevices.dart';
+import 'package:shop_nike/sevices/firestore/cloud_firestore.dart';
 import 'package:shop_nike/sevices/provider.dart';
+import 'package:shop_nike/sevices/stripe/stripe_api.dart';
 import 'package:shop_nike/widgets/confirm_oder.dart';
 import 'package:shop_nike/widgets/my_button.dart';
 
@@ -199,21 +200,31 @@ class _CartPageState extends State<CartPage> {
               Expanded(
                 flex: 2,
                 child: GestureDetector(
-                  onTap: () async {
-                    if (cart.items.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Your cart is empty!')),
+                  onTap: () 
+                  // async
+                   {
+                        StripeService.instance.makePayment(
+                        "kien",
+                        cart.totalAmount,
                       );
-                      return;
-                    }
-                    bool? isConfirmed = await showDialog<bool>(
-                      context: context,
-                      builder: (context) => const ConfirmOder(),
-                    );
-                    if (isConfirmed == true) {
-                      handlePayment(cart);
-                    }
-                    return;
+                    // if (cart.items.isEmpty) {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     const SnackBar(content: Text('Your cart is empty!')),
+                    //   );
+                    //   return;
+                    // }
+                    // bool? isConfirmed = await showDialog<bool>(
+                    //   context: context,
+                    //   builder: (context) => const ConfirmOder(),
+                    // );
+                    // if (isConfirmed == true) {
+                    //   // handlePayment(cart);
+                    //   StripeService.instance.makePayment(
+                    //     "kien",
+                    //     cart.totalAmount,
+                    //   );
+                    // }
+                    // return;
                   },
                   child: MyButton(name: 'PAY'),
                 ),

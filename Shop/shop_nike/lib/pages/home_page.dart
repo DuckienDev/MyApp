@@ -6,7 +6,7 @@ import 'package:shop_nike/models/shoes.dart';
 import 'package:shop_nike/navigators/event_bar.dart';
 import 'package:shop_nike/pages/information_product.dart';
 import 'package:shop_nike/pages/search_page.dart';
-import 'package:shop_nike/sevices/cloud_firestore.dart';
+import 'package:shop_nike/sevices/firestore/cloud_firestore.dart';
 import 'package:shop_nike/widgets/event_home.dart';
 import 'package:shop_nike/widgets/my_product.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
