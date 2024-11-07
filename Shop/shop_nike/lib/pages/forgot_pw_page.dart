@@ -39,6 +39,7 @@ class _ForgotPwPageState extends State<ForgotPwPage> {
               hintText: 'Your email',
               obscureText: false,
             ),
+            //Send pw
             GestureDetector(
               onTap: () {
                 auth.forgotPassword(context, _emailController);

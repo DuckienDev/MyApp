@@ -101,13 +101,15 @@ class _CartPageState extends State<CartPage> {
         );
 
         await firebase.addMyOrder(newOrder, auth.currentUser().toString());
-        // Thông báo thành công
+
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Order placed successfully!'),
             backgroundColor: Colors.black,
           ),
         );
+        cart.clearCart();
+        setState(() {});
       } catch (e) {
         print('Error: ADD ORDER');
         print(e);
@@ -200,31 +202,40 @@ class _CartPageState extends State<CartPage> {
               Expanded(
                 flex: 2,
                 child: GestureDetector(
-                  onTap: () 
-                  // async
-                   {
-                        StripeService.instance.makePayment(
-                        "kien",
+                  onTap: () async {
+                    if (cart.items.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Your cart is empty!'),
+                          backgroundColor: Colors.black,
+                        ),
+                      );
+                      return;
+                    }
+
+                    bool? isConfirmed = await showDialog<bool>(
+                      context: context,
+                      builder: (context) => const ConfirmOder(),
+                    );
+
+                    if (isConfirmed == true) {
+                      bool paymentSuccess =
+                          await StripeService.instance.makePayment(
+                        AuthSevices().emailUser().toString(),
                         cart.totalAmount,
                       );
-                    // if (cart.items.isEmpty) {
-                    //   ScaffoldMessenger.of(context).showSnackBar(
-                    //     const SnackBar(content: Text('Your cart is empty!')),
-                    //   );
-                    //   return;
-                    // }
-                    // bool? isConfirmed = await showDialog<bool>(
-                    //   context: context,
-                    //   builder: (context) => const ConfirmOder(),
-                    // );
-                    // if (isConfirmed == true) {
-                    //   // handlePayment(cart);
-                    //   StripeService.instance.makePayment(
-                    //     "kien",
-                    //     cart.totalAmount,
-                    //   );
-                    // }
-                    // return;
+
+                      if (paymentSuccess) {
+                        handlePayment(cart);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Payment failed!'),
+                            backgroundColor: Colors.black,
+                          ),
+                        );
+                      }
+                    }
                   },
                   child: MyButton(name: 'PAY'),
                 ),

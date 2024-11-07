@@ -13,6 +13,10 @@ class AuthSevices {
   String? currentUser() {
     return _auth.currentUser?.uid;
   }
+ //Email
+  String? emailUser() {
+    return _auth.currentUser?.email;
+  }
 
   //LOGOUT
   Future<void> logout() async {
@@ -23,9 +27,13 @@ class AuthSevices {
       print("Error log out: $e");
     }
   }
-  
+
 //SIGN IN
- Future<void> userlogin(BuildContext context,TextEditingController email,TextEditingController password,) async {
+  Future<void> userlogin(
+    BuildContext context,
+    TextEditingController email,
+    TextEditingController password,
+  ) async {
     showDialog(
         context: context,
         builder: (context) {
@@ -39,8 +47,7 @@ class AuthSevices {
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email.text.trim(),
-          password: password.text.trim());
+          email: email.text.trim(), password: password.text.trim());
 
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text(
@@ -72,7 +79,8 @@ class AuthSevices {
   }
 
 //SIGN UP
-  Future<void>  userSignUp(BuildContext context,TextEditingController email,TextEditingController password,TextEditingController Repassword) async {
+  Future<void> userSignUp(BuildContext context, TextEditingController email,
+      TextEditingController password, TextEditingController Repassword) async {
     //CHECK PW
     if (password.text.trim() != Repassword.text.trim()) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -95,8 +103,7 @@ class AuthSevices {
       //SIGN UP
       UserCredential userCredential =
           await _auth.createUserWithEmailAndPassword(
-              email: email.text.trim(),
-              password: password.text.trim());
+              email: email.text.trim(), password: password.text.trim());
 
       Profile profile = Profile(
         id: userCredential.user?.uid ?? '',
@@ -136,11 +143,16 @@ class AuthSevices {
   }
 
 //FG Password
- Future<void> forgotPassword(BuildContext context,TextEditingController email,) async {
+  Future<void> forgotPassword(
+    BuildContext context,
+    TextEditingController email,
+  ) async {
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email.text.trim());
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: email.text.trim());
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('A password reset email has been sent to $email')),
+        SnackBar(
+            content: Text('A password reset email has been sent to $email')),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -148,5 +160,4 @@ class AuthSevices {
       );
     }
   }
-  
 }

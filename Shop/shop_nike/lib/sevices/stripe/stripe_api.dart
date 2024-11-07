@@ -6,15 +6,11 @@ class StripeService {
   StripeService._();
   static final StripeService instance = StripeService._();
 
-  Future<String?> makePayment(String userName, int amount) async {
+  Future<bool> makePayment(String userName, int amount) async {
     try {
-      String? paymentIntentClientSecret =
-          await _createPaymentIntent(amount * 100, 'usd');
-      if (paymentIntentClientSecret == null) {
-        return null;
-      }
+      String? paymentIntentClientSecret = await _createPaymentIntent(amount * 100, 'usd');
+      if (paymentIntentClientSecret == null) return false;
 
-      // Khởi tạo Payment Sheet với client secret
       await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
           paymentIntentClientSecret: paymentIntentClientSecret,
@@ -22,11 +18,11 @@ class StripeService {
         ),
       );
 
-      await _processPayment();
+      return await _processPayment(); 
     } catch (e) {
-      print("Error in makePayment: $e");
+      print(e);
+      return false;
     }
-    return null;
   }
 
   Future<String?> _createPaymentIntent(int amount, String currency) async {
@@ -58,12 +54,14 @@ class StripeService {
   }
 
 //Show Payment Sheet
-  Future<void> _processPayment() async {
+  Future<bool> _processPayment() async {
     try {
       await Stripe.instance.presentPaymentSheet();
       print("Payment completed successfully!");
+      return true; 
     } catch (e) {
       print("Error in _processPayment: $e");
+      return false; 
     }
   }
 }
