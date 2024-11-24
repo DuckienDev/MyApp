@@ -201,7 +201,7 @@ class _HomePageState extends State<HomePage> {
           return Center(
             child: LoadingAnimationWidget.dotsTriangle(
               color: Colors.black,
-              size: 40,
+              size: 39,
             ),
           );
         },

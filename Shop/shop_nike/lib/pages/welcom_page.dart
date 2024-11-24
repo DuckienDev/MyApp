@@ -54,6 +54,7 @@ class WelcomPage extends StatelessWidget {
                   );
                 },
                 child: MyButton(name: 'Start'),
+                
               ),
             ],
           ),
