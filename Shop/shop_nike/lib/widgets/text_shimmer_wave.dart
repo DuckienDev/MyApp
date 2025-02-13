@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class TextShimmerWavePage extends StatefulWidget {
   String? text;
-   TextShimmerWavePage({super.key, this.text});
+  TextShimmerWavePage({super.key, this.text});
 
   static PageRoute route() =>
-      MaterialPageRoute(builder: (_) =>  TextShimmerWavePage());
+      MaterialPageRoute(builder: (_) => TextShimmerWavePage());
 
   @override
   State<TextShimmerWavePage> createState() => _TextShimmerWavePageState();
@@ -111,7 +111,7 @@ class _TextShimmerState extends State<TextShimmer> {
       TweenSequenceItem(
         tween: ColorTween(
           begin: const Color(0xFFbcfbff),
-          end: const Color(0xFF3A777B),
+          end: const Color.fromARGB(255, 86, 116, 118),
         ),
         weight: 50.0,
       ),
@@ -131,6 +131,7 @@ class _TextShimmerState extends State<TextShimmer> {
         widget.char,
         style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
+              fontSize: 20,
               color: _colorAnimation.value!,
             ),
       ),

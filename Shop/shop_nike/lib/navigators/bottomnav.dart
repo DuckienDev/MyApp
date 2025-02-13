@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_nike/pages/credit_cart_page.dart';
+import 'package:shop_nike/pages/chat_ai_page.dart';
 import 'package:shop_nike/pages/home_page.dart';
 import 'package:shop_nike/pages/cart_page.dart';
 import 'package:shop_nike/pages/profile_page.dart';
@@ -19,27 +19,26 @@ class _BottomNavState extends State<BottomNav> {
   late HomePage homePage;
   late ProfileUser profileUser;
   late CartPage oderPage;
-  late CreditCartPage walletPage;
+  late ChatAiPage chatAiPage;
 
   @override
   void initState() {
     homePage = const HomePage();
     profileUser = const ProfileUser();
     oderPage = const CartPage();
-    walletPage = const CreditCartPage();
-    pages = [homePage, oderPage, walletPage, profileUser];
+    chatAiPage = const ChatAiPage();
+    pages = [homePage, oderPage, chatAiPage, profileUser];
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: pages[_currentTabIndex],
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(top: 10.0),
         child: CurvedNavigationBar(
-          height: 65,
+          height: 75,
           backgroundColor: Colors.white,
           color: Colors.black,
           onTap: (int index) {
@@ -57,7 +56,7 @@ class _BottomNavState extends State<BottomNav> {
               color: Colors.white,
             ),
             Icon(
-              Icons.wallet_outlined,
+              Icons.chat_rounded,
               color: Colors.white,
             ),
             Icon(

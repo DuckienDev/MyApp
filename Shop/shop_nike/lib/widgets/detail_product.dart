@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_nike/pages/information_product.dart';
+import 'package:shop_nike/widgets/text_shimmer_wave.dart';
 import 'package:typewritertext/typewritertext.dart';
 
 class MyIFMProduct extends StatelessWidget {
@@ -31,9 +32,8 @@ class MyIFMProduct extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                widget.shoe.names,
-                style: Theme.of(context).textTheme.displayLarge,
+              TextShimmerWavePage(
+                text: widget.shoe.names,
               ),
               Text(
                 '${widget.shoe.price} USD',
@@ -139,8 +139,8 @@ class MyIFMProduct extends StatelessWidget {
             duration: const Duration(milliseconds: 50),
           ),
           const SizedBox(height: 10),
-     
-                TypeWriter.text(
+
+          TypeWriter.text(
             "- Instructions for use and storage: Avoid soaking in water "
             " for too long - Avoid contact with materials that cause "
             "discoloration - Do not use detergents, avoid machine washing.",

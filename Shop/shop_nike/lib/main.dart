@@ -1,3 +1,4 @@
+import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_nike/conts.dart';
@@ -12,6 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = stripePublishableKey;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    Gemini.init(apiKey: GEMINI_API_KEY);
   runApp(
     ChangeNotifierProvider(
       create: (context) => Cart(),
