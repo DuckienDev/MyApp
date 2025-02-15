@@ -4,9 +4,22 @@ import 'package:shop_nike/models/profile.dart';
 import 'package:shop_nike/models/shoes.dart';
 
 import '../../models/event.dart';
+import '../../models/sport_event.dart';
 
 class CloudFirestoreService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+
+  //GET SPORT EVENT FROM CLOUD FIRESTORE
+  Future<List<SportEvent>> suportEventData() async {
+    QuerySnapshot querySnapshotlistSport =
+        await _firestore.collection('sportEvent').get();
+    List<SportEvent> listSport = querySnapshotlistSport.docs.map((doc) {
+      return SportEvent.fromMap(doc.id, doc.data() as Map<String, dynamic>);
+    }).toList();
+    return listSport;
+  }
+
 
   //GET EVENT FROM CLOUD FIRESTORE
   Future<List<Event>> eventData() async {

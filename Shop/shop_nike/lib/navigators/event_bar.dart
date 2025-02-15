@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_nike/pages/new_event_page.dart';
+import 'package:shop_nike/pages/list_event_bar/men_event_page.dart';
+import 'package:shop_nike/pages/list_event_bar/new_event_page.dart';
+import 'package:shop_nike/pages/list_event_bar/women_event_page.dart';
 
 class EvenBarNavigator extends StatelessWidget {
   const EvenBarNavigator({
@@ -18,7 +20,7 @@ class EvenBarNavigator extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>  const NewEventPage()));
+                      builder: (context) => const NewEventPage()));
             },
             child: Text(
               'New & Future',
@@ -26,14 +28,24 @@ class EvenBarNavigator extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MenEventPage()));
+            },
             child: Text(
               'Men',
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const WomenEventPage()));
+            },
             child: Text(
               'Women',
               style: Theme.of(context).textTheme.displaySmall,

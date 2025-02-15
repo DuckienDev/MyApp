@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                 const EvenBarNavigator(),
                 const SizedBox(height: 5),
                 //EVENNT
-                const EventHome(),
+                 const EventHome(),
                 const SizedBox(height: 20),
                 //TEXT TRENDING
                 Padding(

@@ -73,7 +73,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: TypeWriter.text(
-                "${widget.event.detailEvent}",
+                widget.event.detailEvent,
                 duration: const Duration(milliseconds: 10),
                 style: const TextStyle(
                   fontSize: 14,

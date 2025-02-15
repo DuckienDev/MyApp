@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:shop_nike/widgets/loop_video_event.dart';
 
 class EventHome extends StatelessWidget {
   const EventHome({
@@ -28,32 +29,8 @@ class EventHome extends StatelessWidget {
             height: 200,
             width: double.infinity,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child:
-                  FutureBuilder(
-                future: Future.delayed(const Duration(milliseconds: 500)),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return SizedBox(
-                      child: Shimmer.fromColors(
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.grey[100]!,
-                        child: Container(
-                          height: double.infinity,
-                          width: double.infinity,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    );
-                  } else {
-                    return Image.network(
-                      'https://people.com/thmb/3oZo78CMAZkNlASTl9NZoyFP35M=/4000x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(749x0:751x2)/nike-1-b63456412dd94d12b3e4d6e0a24d9747.jpg',
-                      fit: BoxFit.cover,
-                    );
-                  }
-                },
-              ),
-            ),
+                borderRadius: BorderRadius.circular(12),
+                child: const LoopingVideoContainer()),
           ),
           const SizedBox(height: 10),
           Padding(
@@ -74,16 +51,20 @@ class EventHome extends StatelessWidget {
                       colors: colorizeColors,
                     ),
                     ColorizeAnimatedText(
-                      'NOTHING BEATS THE CITY',
+                      'NOTHING BEATS',
+                      textStyle: colorizeTextStyle,
+                      colors: colorizeColors,
+                      textAlign: TextAlign.center,
+                    ),
+                    ColorizeAnimatedText(
+                      'THE CITY',
                       textStyle: colorizeTextStyle,
                       colors: colorizeColors,
                       textAlign: TextAlign.center,
                     ),
                   ],
                   isRepeatingAnimation: true,
-                  onTap: () {
-                    print("Tap Event");
-                  },
+                  onTap: () {},
                 ),
               ),
             ),

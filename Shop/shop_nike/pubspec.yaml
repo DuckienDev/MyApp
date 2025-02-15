@@ -32,6 +32,7 @@ dependencies:
   flutter_gemini: ^2.0.4
   image_picker: ^1.1.1
   dash_chat_2: ^0.0.20
+  video_player: ^2.9.2
 
 dev_dependencies:
   flutter_test:
@@ -53,7 +54,10 @@ flutter:
     - assets/img/user-profile.png
     - assets/img/icon.png
     - assets/img/screen_splast.png
-
+    - assets/img/
+    - assets/video/video_event.mp4
+    - assets/video/
+    - assets/img/pic1.png
   fonts:
     - family: ethnocentric
       fonts:
@@ -67,3 +71,11 @@ flutter:
       fonts:
         - asset: assets/fonts/CollegiateFLF.ttf
           weight: 700
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 500
+    - family: Roboto2
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+          weight: 800

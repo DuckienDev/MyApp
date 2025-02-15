@@ -94,6 +94,34 @@ class _ChatAiPageState extends State<ChatAiPage> {
     );
   }
 
+  Widget _buildChatUI() {
+    return Container(
+      color: const Color.fromARGB(255, 199, 198, 198),
+      child: DashChat(
+        messageOptions: MessageOptions(
+          showCurrentUserAvatar: true,
+          showOtherUsersName: true,
+          currentUserTimeTextColor: Theme.of(context).colorScheme.surface,
+          currentUserContainerColor: Theme.of(context).colorScheme.primary,
+        ),
+        inputOptions: InputOptions(
+          inputTextStyle: const TextStyle(
+            color: Colors.black,
+          ),
+          trailing: [
+            IconButton(
+              onPressed: _sendMediaMessage,
+              icon: const Icon(Icons.image),
+            ),
+          ],
+        ),
+        currentUser: currentUser,
+        onSend: _sendMessage,
+        messages: messages,
+      ),
+    );
+  }
+
   Future<void> _sendInitialMessage() async {
     final CloudFirestoreService _firestore = CloudFirestoreService();
 
@@ -137,34 +165,6 @@ class _ChatAiPageState extends State<ChatAiPage> {
     } catch (e) {
       print("Lỗi khi lấy dữ liệu Firestore hoặc gửi request: $e");
     }
-  }
-
-  Widget _buildChatUI() {
-    return Container(
-      color: const Color.fromARGB(255, 199, 198, 198),
-      child: DashChat(
-        messageOptions: MessageOptions(
-          showCurrentUserAvatar: true,
-          showOtherUsersName: true,
-          currentUserTimeTextColor: Theme.of(context).colorScheme.surface,
-          currentUserContainerColor: Theme.of(context).colorScheme.primary,
-        ),
-        inputOptions: InputOptions(
-          inputTextStyle: const TextStyle(
-            color: Colors.black,
-          ),
-          trailing: [
-            IconButton(
-              onPressed: _sendMediaMessage,
-              icon: const Icon(Icons.image),
-            ),
-          ],
-        ),
-        currentUser: currentUser,
-        onSend: _sendMessage,
-        messages: messages,
-      ),
-    );
   }
 
   Future<void> _sendMessage(ChatMessage chatMessage) async {
@@ -231,3 +231,4 @@ class _ChatAiPageState extends State<ChatAiPage> {
     }
   }
 }
+    
