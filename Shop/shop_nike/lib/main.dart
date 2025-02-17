@@ -1,7 +1,7 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_nike/conts.dart';
 import 'package:shop_nike/sevices/auth/auth_gate.dart';
 import 'package:shop_nike/sevices/provider.dart';
 import 'package:shop_nike/themes/dark_mode.dart';
@@ -11,9 +11,10 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Stripe.publishableKey = stripePublishableKey;
+  await dotenv.load(fileName: ".env");
+  Stripe.publishableKey = dotenv.env['stripePublishableKey']!;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    Gemini.init(apiKey: GEMINI_API_KEY);
+  Gemini.init(apiKey: dotenv.env['GEMINI_API_KEY']!);
   runApp(
     ChangeNotifierProvider(
       create: (context) => Cart(),
@@ -29,8 +30,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:
-       const AuthGate(),
+      home: const AuthGate(),
       theme: darkMode,
     );
   }

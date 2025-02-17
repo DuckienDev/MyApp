@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:shop_nike/conts.dart';
 
 class StripeService {
   StripeService._();
@@ -8,7 +8,8 @@ class StripeService {
 
   Future<bool> makePayment(String userName, int amount) async {
     try {
-      String? paymentIntentClientSecret = await _createPaymentIntent(amount * 100, 'usd');
+      String? paymentIntentClientSecret =
+          await _createPaymentIntent(amount * 100, 'usd');
       if (paymentIntentClientSecret == null) return false;
 
       await Stripe.instance.initPaymentSheet(
@@ -18,7 +19,7 @@ class StripeService {
         ),
       );
 
-      return await _processPayment(); 
+      return await _processPayment();
     } catch (e) {
       print(e);
       return false;
@@ -38,7 +39,7 @@ class StripeService {
         data: data,
         options: Options(
           headers: {
-            "Authorization": "Bearer $stripeSecretKey",
+            "Authorization": "Bearer ${dotenv.env['stripeSecretKey']}",
             "Content-Type": "application/x-www-form-urlencoded",
           },
         ),
@@ -58,10 +59,10 @@ class StripeService {
     try {
       await Stripe.instance.presentPaymentSheet();
       print("Payment completed successfully!");
-      return true; 
+      return true;
     } catch (e) {
       print("Error in _processPayment: $e");
-      return false; 
+      return false;
     }
   }
 }

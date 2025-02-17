@@ -33,6 +33,7 @@ dependencies:
   image_picker: ^1.1.1
   dash_chat_2: ^0.0.20
   video_player: ^2.9.2
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +59,7 @@ flutter:
     - assets/video/video_event.mp4
     - assets/video/
     - assets/img/pic1.png
+    - .env
   fonts:
     - family: ethnocentric
       fonts:
