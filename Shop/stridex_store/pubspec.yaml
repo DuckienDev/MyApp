@@ -1,0 +1,86 @@
+name: stridex_store
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  firebase_core: ^3.2.0
+  cloud_firestore: ^5.2.1
+  carousel_slider: ^5.0.0
+  smooth_page_indicator: ^1.2.0+3
+  curved_navigation_bar: ^1.0.6
+  provider: ^6.1.2
+  firebase_auth: ^5.2.0
+  animations: ^2.0.11
+  vertical_card_pager: ^1.6.2
+  loading_animation_widget: ^1.3.0
+  animated_text_kit: ^4.2.2
+  typewritertext: ^3.0.9
+  shimmer: ^3.0.0
+  u_credit_card: ^1.4.0
+  flutter_native_splash: ^2.4.2
+  flutter_stripe: ^11.2.0
+  dio: ^5.7.0
+  flutter_gemini: ^2.0.4
+  image_picker: ^1.1.1
+  dash_chat_2: ^0.0.20
+  video_player: ^2.9.2
+  flutter_dotenv: ^5.2.1
+  change_app_package_name: ^1.4.0
+  flutter_svg: ^2.0.17
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/img/logoStrideX.png"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/img/user-profile.png
+    - assets/img/screen_splast.png
+    - assets/img/
+    - assets/svg/
+    - assets/video/video_event.mp4
+    - assets/video/
+    - assets/img/pic1.png
+    - .env
+    - assets/img/logoStrideX.png
+    - assets/img/logoStrideX-Photoroom.png
+    - assets/img/04CA58E5-00BD-46E4-8BB7-65FC88BD7962.PNG
+  fonts:
+    - family: ethnocentric
+      fonts:
+        - asset: assets/fonts/ethnocentric rg.otf
+          weight: 700
+    - family: Designer
+      fonts:
+        - asset: assets/fonts/Designer.otf
+          weight: 700
+    - family: CollegiateFLF
+      fonts:
+        - asset: assets/fonts/CollegiateFLF.ttf
+          weight: 700
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 500
+    - family: Roboto2
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+          weight: 800
