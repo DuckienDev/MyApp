@@ -26,6 +26,7 @@ class _NewEventPageState extends State<NewEventPage> {
           "New & Future",
           style: TextStyle(color: Colors.white),
         ),
+        centerTitle: true,
       ),
       body: FutureBuilder<List<Event>>(
         future: _firestore.eventData(),

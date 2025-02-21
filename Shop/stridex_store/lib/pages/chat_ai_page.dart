@@ -47,6 +47,7 @@ class _ChatAiPageState extends State<ChatAiPage> {
             color: Colors.white,
           ),
         ),
+        centerTitle: true,
       ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: isChatStarted ? _buildChatUI() : _buildWelcomeScreen(),
@@ -178,6 +179,7 @@ class _ChatAiPageState extends State<ChatAiPage> {
         images = [File(chatMessage.medias!.first.url).readAsBytesSync()];
       }
       gemini
+          // ignore: deprecated_member_use
           .streamGenerateContent(
         question,
         images: images,

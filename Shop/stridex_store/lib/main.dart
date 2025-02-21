@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -11,10 +12,14 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   await dotenv.load(fileName: ".env");
   Stripe.publishableKey = dotenv.env['stripePublishableKey']!;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Gemini.init(apiKey: dotenv.env['GEMINI_API_KEY']!);
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => Cart(),

@@ -16,8 +16,11 @@ class _MenEventPageState extends State<MenEventPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Men"  ,        style: TextStyle(color: Colors.white),
-),
+        title: const Text(
+          "Men",
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(

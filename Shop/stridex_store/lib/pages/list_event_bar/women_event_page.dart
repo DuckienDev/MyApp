@@ -20,6 +20,7 @@ class _WomenEventPageState extends State<WomenEventPage> {
           "Women",
           style: TextStyle(color: Colors.white),
         ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
